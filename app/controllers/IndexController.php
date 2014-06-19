@@ -12,7 +12,7 @@ public function indexAction()
 	{
 		$routes='';
 		$tag = $this->_getParam('tag');
-		$keywords="sashas,gomel,php,sashas2.0,sashas-2007,Homel,blog,alexander,lukyanov,sashas,zend, zend framework, new york, ALex Lukyanov,news,blog";
+		$keywords="Alex Lukyanov Blog, Sashas, Magento, Magento Extensions, Blog, News, Articles, New York, PHP";
 		$descr='Official blog  of Alex Lukyanov (Sashas)';
 		
 		if ( ($tag!=='All') && (!empty($tag)) ) {
@@ -20,7 +20,7 @@ public function indexAction()
 			$keywords.=",".$tag;
 			$db = new App_Model_Articles();
 			$main = $db->getIndex($tag);
-			$descr.=' / Info about  '.$tag;
+			$descr.=' | '.$tag;
 			$route='tagpages';
 			$routes=$tag;
 		} else {
@@ -50,22 +50,22 @@ public function indexAction()
 	
 		$routes='';
 		$tag = $this->_getParam('tag');
-		$keywords="sashas,gomel,php,sashas2.0,sashas-2007,Homel,blog,alexander,lukyanov,sashas,zend, zend framework, new york, ALex Lukyanov,news,blog";
+		$keywords="Alex Lukyanov Blog, Sashas, Magento, Magento Extensions, Blog, News, Articles, New York, PHP";
 		$descr='Official blog  of Alex Lukyanov (Sashas)';
 		
 		if ( ($tag!=='All') and (!empty($tag)) ) {
-			$head='Sashas.org / '.$tag;
+			$head=$tag;
 			$keywords.=",".$tag;
 	        $db = new App_Model_Articles();
 			$main = $db->getIndex($tag);;
-			$descr.=' / Info about  '.$tag;
+			$descr.=' | '.$tag;
 			$route='tagpages';
 			$routes=$tag;
 		} else {
 			
 			$route='tagpages';
 			$routes='All';
-			$head='Sashas.org Page '.$this->_getParam('page');
+			$head="Page: ".$this->_getParam('page');
 			$tableMain = new App_Model_Articles();
 			$main = $tableMain->getIndex();		
 		}
@@ -102,10 +102,10 @@ public function indexAction()
 		$add_keywords=str_replace(' ',',',$main->title);
 		$add_keywords=str_replace("'","",$add_keywords);
 		$add_keywords=str_replace('"','',$add_keywords);
-		$this->view->headMeta()->appendName('keywords', $add_keywords.'sashas,gomel,php,sashas2.0,sashas-2007,Homel,blog,alexander,lukyanov,sashas,zend, Alex Lukyanov, New York, Sashas');
+		$this->view->headMeta()->appendName('keywords', $add_keywords.'Alex Lukyanov Blog, Sashas, Magento, Magento Extensions, Blog, News, Articles, New York, PHP');
 		$this->view->headMeta()->appendName('description', $main->title);
  
-		$this->view->headTitle()->append(' | '.$main->title);
+		$this->view->headTitle()->append($main->title);
 		$this->view->main = $main;
 	 		 
 		// pager and comments
@@ -121,7 +121,7 @@ public function indexAction()
 		// Retrieve BigDaddy71's profile information
 		$artists = $as->userGetTopArtists();
 		$this->view->artists=$artists;
-		$this->view->headTitle()->append('Sashas.org | LastFM');
+		$this->view->headTitle()->append('LastFM');
 	}
 	
 	

@@ -1,9 +1,9 @@
 <?php
 class MapController extends Zend_Controller_Action {
 	public function travelAction() {
-		$this->view->headMeta()->appendName('keywords', 'Travel, Sashas travels, sashas,gomel,php,sashas2.0,sashas-2007,Homel,blog,alexander,lukyanov,sashas,zend, Alex Lukyanov, New York, Sashas');
-		$this->view->headMeta()->appendName('description', 'Map, travel, Sashas travels, google maps, Alex Lukyanov');		
-		$this->view->headTitle()->append('Sashas.org | Alex Lukyanov | Travels');
+		$this->view->headMeta()->appendName('keywords', 'Travel, Alex Lukyanov Blog, Sashas, Magento, Magento Extensions, Blog, News, Articles, New York, PHP');
+		$this->view->headMeta()->appendName('description', 'Travel around the  world');		
+		$this->view->headTitle()->append('Travels map');
 		
 		$maps = new App_Model_Map ();
 		// sashas <script

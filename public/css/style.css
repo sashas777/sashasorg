@@ -378,7 +378,7 @@ header #main-menu-container #main-menu li.menu-item .sub-menu li.menu-item.curre
 .comment-box .btn {margin-right:5px;}
 .comment-box .comments-form {float:none; margin: 0 auto;}
 .comments-list {margin-top:20px;}
-.comments-list > .media .media-footer { color: #727272;  font-size: 0.85em; line-height: 1.4;}
+.comments-list > .media .media-header { color: #727272;  font-size: 0.85em; line-height: 1.4;}
 .comments-list h2 {font-size: 1.43em; line-height: 1.65;}
 .comments-list > .media {   border-bottom: 1px dotted #e3e3e3; display: block;padding: 16px 0;}
 .comments-list > .media:last-of-type {border-bottom: 0 none;}

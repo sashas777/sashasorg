@@ -78,14 +78,7 @@ function deletecomment(artid, arttid) {
 			});
 }
 
-function showRecaptcha(element) {
-	Recaptcha.create("6LerpMgSAAAAAGSOZvNwJpyBYUhUxC5sMaqSes2X", element, {
-		theme : "white",
-		callback : Recaptcha.focus_response_field
-	});
-	$('#captcha').hide();
-}
-
+ 
 window.onload = function() {
 	  setLinks();
 	}

@@ -10,7 +10,7 @@ class TagController extends Zend_Controller_Action
 		$this->view->alltags=0;
 		$this->view->tag = $tag;
 		$this->view->max_min = $max_min;
-		$this->view->headTitle()->append('Sashas.org | Теги (Tags) |');
+		$this->view->headTitle()->append('Tags');
 
 	}
 	public function alltagsAction(){
@@ -20,7 +20,7 @@ class TagController extends Zend_Controller_Action
 		$this->view->tag = $tag;
 		$this->view->max_min = $max_min;
 		$this->view->alltags=1;
-		$this->view->headTitle()->append('Sashas.org | All tags');
+		$this->view->headTitle()->append('All tags');
 		$this->_request->setActionName('tagleft');
 
 	}

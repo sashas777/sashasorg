@@ -10,7 +10,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view->doctype('XHTML1_STRICT');
 		// Set the initial title and separator:
 		$view->headTitle('Alex Lukyanov')
-		->setSeparator(' :: ');
+		->setSeparator(' | ');
 		//router
 		$router = $this->setRouter();
 		$front = Zend_Controller_Front::getInstance();

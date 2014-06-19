@@ -3,4 +3,37 @@
 a:hover, a:focus {text-decoration:none; outline: medium none !important;}
 #google_translate_element span {display:none;}
 #google_translate_element div{overflow:hidden; height:27px;}
- 
+.center,  #recaptcha_area { float:none; margin-left: auto; margin-right: auto; }
+.recaptcha_only_if_image, .recaptcha_only_if_audio, .recaptcha_image a {color: #1d1d1d;  font-size: 0.85em; line-height: 1.4; font-weight:400; padding:0;}
+.recaptcha-buttons   li {
+    border: 1px solid #9a9a9a;
+    color: #858585;
+    display: block;
+    font-size: 1.25em;
+    height: 32px;
+    line-height: 32px;
+    padding: 0;
+    text-align: center;
+    transition: all 0.4s ease 0s;
+    width: 32px;
+    float: left;
+    margin: 0 4px 0 0;
+}
+#recaptcha_image {width:auto !important; height: auto !important;}
+#recaptcha_image img { width:100%;}
+.captcha-image { text-align:center;}
+#recaptcha_image br {height: 0;}
+
+blockquote {font-size: 14px;}
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+.post-content p { min-height: 1px; overflow: auto;}
+.post-content p img { margin: 0px auto;}
+/*LastFM*/
+.post-content .artist {float:left;}

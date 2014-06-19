@@ -1,11 +1,21 @@
-<div class="box1" class="lastfm">
-
-<?php foreach ($this->artists as $artist): 
- if (!empty($artist->image)) {?>
-<div class="artist">
- <img height="70px;" border="0" align="middle" alt="<?php echo $artist->name; ?>" src="<?php echo $artist->image; ?>">
-<div class="title"><?php echo $artist->name; ?></div>
-</div>
-<?php } ?>
-<?php endforeach; ?>
-</div>
+<div class="post-item isolated-block col-xs-12 col-lg-12">
+	<h1><span itemprop="name" >The Latest Top Artists I Listening To</a>		 
+		<div class="g-plusone" href="<?php  echo $this->url(array('articleId' =>  $main['url']),'articles'); ?>" data-size="medium"></div> 
+	</h1>
+	<div class="meta post-header clearfix">
+		<div class="meta-item posted-by"><span class="glyphicon glyphicon-user"></span>
+			Posted by <a href="https://profiles.google.com/109504873360376523788" itemprop="author" rel="author" title="author profile">Alex Lukyanov</a></div>
+	</div>
+    <div class="post-content text-content clearfix">
+		<?php foreach ($this->artists as $artist):?> 
+		 	<?php if (!empty($artist->image)):?>
+				<div class="artist col-lg-1">
+				 <img   border="0" align="middle" alt="<?php echo $artist->name; ?>" src="<?php echo $artist->image; ?>">
+				<div class="title"><?php echo $artist->name; ?></div>
+				</div>				
+			<?php endif; ?>
+		<?php endforeach; ?>
+    </div> 
+    
+</div> 
+ 

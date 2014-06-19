@@ -1,141 +1,155 @@
 <?php  $main=$this->main; ?>
-<div class="post-item isolated-block col-xs-12 col-lg-12">
-	<h1><a href="post.html">Donec eu ipsum vel turpis laoreet porttitor aac lectus</a></h1>
+<div  id="article<?php echo $main->id; ?>"  class="post-item isolated-block col-xs-12 col-lg-12">
+	<h1><?php echo $main->title; ?>	 	 
+	 	<div class="g-plusone" href="<?php echo $this->url(array('articleId' =>  $main->url),'articles');?>" data-size="medium"></div> 
+	 </h5>
+	</h1>
 	<div class="meta post-header clearfix">
-		<div class="meta-item posted-by"><span class="glyphicon glyphicon-user"></span> Posted by A. Lukyanov</div>
+			<div class="meta-item posted-by"><span class="glyphicon glyphicon-user"></span>
+				Posted by <a href="https://profiles.google.com/109504873360376523788" itemprop="author" rel="author" title="author profile">Alex Lukyanov</a></div>
 	</div>
-    <div class="post-content text-content clearfix">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum interdum interdum mollis.
-	    Aliquam quis nisl purus. Maecenas fermentum eros urna. Phasellus congue vulputate nisi et semper. 
-	    Sed eu justo et tortor tincidunt volutpat. Mauris facilisis porta diam. Proin lobortis urna sit amet mauris pharetra cursus. 
-	    Nulla faucibus urna non nunc cursus, quis suscipit felis tempor. In pellentesque est ac est cursus convallis. 
-	    In mollis venenatis diam. Cras pulvinar, leo nec ultrices imperdiet, arcu ante commodo arcu, nec tempor dui turpis quis ante. 
-	    Nullam pellentesque, lorem vitae adipiscing mollis, mi elit vestibulum nisi, at accumsan nulla turpis sit amet lorem. 
-	    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas hendrerit fringilla quam, eget sagittis purus suscipit eget.
+    <div class="post-content text-content clearfix">
+    	<?php echo stripcslashes($main->text);?>
+    	<?php if (!empty($main->full_text)) : ?>
+			 <?php echo stripcslashes($main->full_text) ;?>
+		<?php endif; ?>
     </div> 
-    <div class="meta post-header post-footer clearfix">
-        <ul class="meta-item tags clearfix">
-             <li class="icon"><span class="glyphicon glyphicon-tag"></span></li>
-             <li><a href="#">Tag 1</a></li>
-             <li><a href="#">Tag 2</a></li>
-         </ul>
-         <div class="meta-item comments"><a href="#"><span class="glyphicon glyphicon-comment"></span>Read more</a></div>
-    </div>    
-</div> 
-
-<div id="article<?php echo $main->id; ?>" class="box1 article">
- 
-	 <div class="fleft">
-		 <h5><a href='<?php echo $this->url(array('articleId' => $main->url),'articles'); ?>'><?php echo $main->title; ?></a>
-		 <g:plusone href="<?php echo $this->url(array('articleId' =>  $main->url),'articles');?>"></g:plusone></h5>
-		  <p><?php echo stripcslashes($main->text);?>
-		  <br/>
-		  	<?php if (!empty($main->full_text)) {
-					echo "<p>".stripcslashes($main->full_text)."</p>";
-					} ?>
-		  </p>
-	 </div>
-     <div class="fright">
-     <?	
-if (! empty ( $main->tags )) {
-		$i=0;
-		$tags=explode(',', $main->tags);
-		$tags_url=explode(',', $main->tag_urls);
-		foreach ( $tags as $tag){		
-			echo "<a class=\"link\"href=\"".$this->url(array('tag' => $tags_url[$i]),'tag')."\">".$tag."</a>";
-			$i++;
-		}
-	 
-	}
-	?> 		 
-		<? if (Zend_Auth::getInstance()->hasIdentity()){?>
-		  <a href='' class="link" onclick="deletearticle(<?php echo $main->id;?>); return false;">Delete</a>
-		  <a class="link" href='<?php echo   $this->url(array('articleId' =>  $main->url),'article_edit'); ?>'>Edit</a>
-  		<? }?>
-     </div>
-</div>
-<div  class="addthis">
-	<!-- AddThis Button BEGIN -->
-		<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-			<a class="addthis_button_preferred_1"></a> <a
-				class="addthis_button_preferred_2"></a> <a
-				class="addthis_button_preferred_3"></a> <a
-				class="addthis_button_preferred_4"></a> <a
-				class="addthis_button_preferred_5"></a> <a
-				class="addthis_button_preferred_6"></a> <a
-				class="addthis_button_preferred_7"></a> <a
-				class="addthis_button_preferred_8"></a> <a
-				class="addthis_button_preferred_9"></a> <a
-				class="addthis_button_preferred_10"></a> <a
-				class="addthis_button_preferred_11"></a> <a
-				class="addthis_button_preferred_12"></a> <a
-				class="addthis_button_preferred_13"></a><a
-				class="addthis_button_preferred_14"></a><a
-				class="addthis_button_preferred_15"></a><a
-				class="addthis_button_compact"></a> <a
-				class="addthis_counter addthis_bubble_style"></a>
+	<div class="meta post-header post-footer clearfix">
+	    <ul class="meta-item tags clearfix">
+	         <li class="icon"><span class="glyphicon glyphicon-tag"></span></li>
+				 <?	
+				if (!empty($main->tags)):
+						$tags = explode (',',$main->tags);
+						$tags_urls = explode (',',$main->tag_urls);
+						$i = 0;					
+						foreach ( $tags as $tag ):				
+							echo '<li><a  href="'.$this->url(array('tag'=>$tags_urls[$i]),'tag' ).'">'.$tag.'</a></li>';
+							$i ++;					
+						endforeach;
+					endif;
+				 ?>  	         
+	     </ul>
+     	 <div  class="addthis pull-right">
+		 <!-- AddThis Button BEGIN -->
+			<div class="addthis_toolbox addthis_default_style addthis_24x24_style">
+				<a class="addthis_button_preferred_1"></a>
+				 <a class="addthis_button_preferred_2"></a> 
+				 <a class="addthis_button_preferred_3"></a>
+				 <a class="addthis_button_preferred_4"></a>
+				 <a class="addthis_button_preferred_5"></a> 
+				 <a class="addthis_button_preferred_6"></a> 
+				 <a class="addthis_button_preferred_7"></a> 
+				 <a class="addthis_button_preferred_8"></a> 
+				 <a class="addthis_button_preferred_9"></a> 
+				 <a class="addthis_button_preferred_10"></a> 
+				 <a class="addthis_button_preferred_11"></a> 
+				 <a class="addthis_button_preferred_12"></a> 
+				 <a class="addthis_button_preferred_13"></a>
+				 <a class="addthis_button_preferred_14"></a>
+				 <a class="addthis_button_preferred_15"></a>
+				 <a class="addthis_button_compact"></a> 
+				 <a class="addthis_counter addthis_bubble_style"></a>
+			</div>
+		<script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
+		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f0f9813583963ee"></script>
+		<!-- AddThis Button END -->
+		</div>	  		
+		<? if (Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isadmin == 1):?>
+		<div class="meta-item comments">
+			<!-- @todo refactor -->
+		  	<a href='' class="link" onclick="deletearticle(<?php echo $main->id;?>); return false;">Delete</a>
+		 	<a class="link" href='<?php echo   $this->url(array('articleId' =>  $main->url),'article_edit'); ?>'>Edit</a>
+		 	<!-- @todo refactor -->
+		</div> 		 	
+  		<? endif;?>				  	
+	</div>	
+	<div class="comment-box text-right clearfix" id="comment-form">
+		<h2><span class="glyphicon glyphicon-comment"></span> Leave a Comment</h2>
+		<div class="comment-form-container col-lg-12">
+			<form role="form" id="form_comments" class="col-lg-6 comments-form form-horizontal" enctype="application/x-www-form-urlencoded" method="post" align="center" action="">
+				 <div class="form-group">
+					<textarea  class="form-control article-add-comment"  placeholder="Enter message" name="comment" id="comment"></textarea>	
+				 </div> 
+				 <!--  -->
+				 <script type="text/javascript">
+					 var RecaptchaOptions = {
+					    theme : 'custom',
+					    custom_theme_widget: 'recaptcha_widget'
+					 };
+				 </script>				 
+                 <div id="recaptcha_widget" class="clearfix" style="display:none">
+                 	<div class="form-group">
+                    	<div class="controls captcha-image">                                
+                        	<div id="recaptcha_image" class="img-thumbnail"></div>
+                        	<div class="recaptcha_only_if_incorrect_sol" style="color:red">Incorrect please try again</div>
+                    	</div>
+                 	</div>
+                 	<div class="form-group">
+						<label for="recaptcha_response_field" class="col-lg-4 recaptcha_only_if_image control-label">Enter the words above:</label>
+						<label for="recaptcha_response_field" class="col-lg-4 recaptcha_only_if_audio control-label">Enter the numbers you hear:</label>
+					    <div class="col-sm-4">
+					      <input type="text" id="recaptcha_response_field" class="form-control" name="recaptcha_response_field" />
+					    </div>   							 
+						<ul class="col-sm-4 recaptcha-buttons clearfix">
+							<li><a class="" href="javascript:Recaptcha.reload()"><i class="fa fa-refresh"></i></a></li>
+							<li class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')"><i title="Get an audio CAPTCHA" class="fa fa-headphones"></i></a></li>
+							<li class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')"><i title="Get an image CAPTCHA" class="fa fa-image"></i></a></li>
+							<li><a class="" href="javascript:Recaptcha.showhelp()"><i class="fa fa-question"></i></a></li>
+						</ul> 						          
+					</div>        	
+                 	<div class="form-group">
+                 		<div class="col-lg-12"> 
+                 			<div class="col-lg-7"> 
+                 				<input class="btn-outline-inverse btn pull-right" align="middle" name="submit" id="submit" value="Submit Comment" style="float:left;" onclick="addcomment(<?php echo $main->id; ?>); return false;" align="middle" type="submit" /> 
+                 			</div>
+                 			<div class="col-lg-5 "> 
+                 				<input class="btn-outline-inverse btn" style="float:left;" align="middle" name="reset" id="reset" value="Reset" type="reset" />
+                 			</div>                 															 	   
+						</div> 
+					</div>              	
+                 </div>				  
+				 <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6LerpMgSAAAAAGSOZvNwJpyBYUhUxC5sMaqSes2X"></script>
+				 <noscript>
+				 	<iframe src="http://www.google.com/recaptcha/api/noscript?k=6LerpMgSAAAAAGSOZvNwJpyBYUhUxC5sMaqSes2X" height="300" width="500" frameborder="0"></iframe><br>
+				 	<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+				 	<input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+				 </noscript>				 
+			</form>
 		</div>
-<script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f0f9813583963ee"></script>
-<!-- AddThis Button END -->
-</div>
- 
-<div class="add-comment-block">
-<!--COMMENTS-->
-<form id="form_comments" enctype="application/x-www-form-urlencoded" method="post" align="center" action="">
-	 <div class="comment-form">
-		<div class="label-comment"><label for="comment" class="required">Comment:</label>	</div>
-		<textarea  class="pro_btn pro_print1 article-add-comment"  name="comment" id="comment"></textarea>	 
-		<p class="capt">						
-			<div class="capt" style="text-align:left;;" id="recaptcha_div"></div>
-		</p>
-		<input class="pro_btn pro_print2"  type="button" id="captcha" value="Show reCAPTCHA" style="float:left;" onclick="showRecaptcha('recaptcha_div');"></input> 
-		<input class="pro_btn pro_print2" align="middle" name="submit" id="submit" value="Submit Comment" style="float:left;" onclick="addcomment(<?php echo $main->id; ?>); return false;" align="middle" type="submit" /> 
-		<input  class="pro_btn pro_print2" style="float:left;" align="middle" name="reset" id="reset" value="Reset" type="reset" />	 
-     </div>
-</form>
-<script>showRecaptcha('recaptcha_div');</script>
-<center>
-	<div id="load" style="display: none;">
-		<img alt="loading.." src="/public/images/loading.gif" border="0" />
-	</div>
-	<div id="goto"
-		style="display: none; margin: 5px; border: 1px solid #4D9C32; background: #bae4ab;">
-		<p>The comment was added. Thank you!</p>
-	</div>
-	
-</center>
-
-
-</div>
-<div class="comment-block">
-<!--COMMENTS-->
-<?
- 
-if (!empty($this->comments)) {
-foreach ( $this->comments as $comment ) :
-	?>
-<div class="box1" id="comment<?php echo $comment['id']; ?>">
-  <p>
-      <span class="date"><?php echo $comment['date']; ?></span>
-  </p>
-  <p>
-    <?php echo $comment['text']; ?>
-  </p>
- 
-  <? if (Zend_Auth::getInstance()->hasIdentity() and  Zend_Auth::getInstance()->getIdentity()->isadmin == 1){?>
-      <a href="" class="link" onclick="deletecomment(<?php echo $comment['id']; ?>,<?php echo $main->id; ?>); return false;">Delete</a>
-  <?}?>
-
-</div>
-
-<div id="load_comm<?php echo $comment['id']; ?>" style="display: none;">
-	<img alt="loading..." src="/public/images/loading.gif" border="0">
-</div>
-
-<div id="goto_comm<?php echo $comment['id']; ?>" style="display: none; margin: 5px; border: 1px solid #4D9C32; background: #bae4ab;">
-	<p>The comment was deleted.</p>
-</div>
-<? endforeach; 
-}
-?>
+		<!-- @todo refactor -->
+		<div id="load" style="display: none;"><img alt="loading.." src="/public/images/loading.gif" border="0" /></div>
+		<div id="goto" style="display: none; margin: 5px; border: 1px solid #4D9C32; background: #bae4ab;">
+			<p>The comment was added. Thank you!</p>
+		</div>		
+		<!-- @todo refactor -->		
+	</div>  
+	<?php if (!empty($this->comments)): ?>	
+		<div class="comment-box comments-list clearfix" id="comments-area">
+			<h2>Comments</h2>
+			<?php foreach ( $this->comments as $comment ):?>
+				<div class="media clearfix" id="comment<?php echo $comment['id']; ?>">
+			        <div class="media-header">
+			        	<span class="comment-date"><span class="glyphicon glyphicon-pushpin"></span><?php echo $comment['date']; ?></span>
+			        </div>	 	
+					<div class="media-body">
+						<?php echo $comment['text']; ?>
+					</div>
+					<?php if (Zend_Auth::getInstance()->hasIdentity() and  Zend_Auth::getInstance()->getIdentity()->isadmin == 1): ?>
+					<div lass="media-footer">
+						<a href="" class="link" onclick="deletecomment(<?php echo $comment['id']; ?>,<?php echo $main->id; ?>); return false;">Delete</a>
+					</div>     				 
+	  				<?php endif;?>	
+	  				<!-- @todo refactor -->
+					<div id="load_comm<?php echo $comment['id']; ?>" style="display: none;">
+						<img alt="loading..." src="/public/images/loading.gif" border="0">
+					</div>
+					
+					<div id="goto_comm<?php echo $comment['id']; ?>" style="display: none; margin: 5px; border: 1px solid #4D9C32; background: #bae4ab;">
+						<p>The comment was deleted.</p>
+					</div>
+ 	  				<!-- @todo refactor -->				
+				</div>				
+			<?php endforeach;?>                   		                     
+		</div>   		 
+	<?php endif; ?>
 </div>

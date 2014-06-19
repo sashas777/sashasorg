@@ -1,11 +1,11 @@
 <?php foreach ( $this->main as $main ) :?>
 	<div  id="article<?php echo $main['id'];  ?>" class="post-item isolated-block col-xs-12 col-lg-12">
-		<h1><a itemprop="url" href="<?php echo $this->url(array('articleId' =>  $main['url']),'articles'); ?>"><span itemprop="name" ><?php echo $main['title']; ?></span></a>
-		&nbsp; <g:plusone href="<?php  echo $this->url(array('articleId' =>  $main['url']),'articles'); ?>"></g:plusone>
+		<h1><a itemprop="url" href="<?php echo $this->url(array('articleId' =>  $main['url']),'articles'); ?>"><span itemprop="name" ><?php echo $main['title']; ?></span></a>		 
+			<div class="g-plusone" href="<?php  echo $this->url(array('articleId' =>  $main['url']),'articles'); ?>" data-size="medium"></div> 
 		</h1>
 		<div class="meta post-header clearfix">
 			<div class="meta-item posted-by"><span class="glyphicon glyphicon-user"></span>
-				Posted by a <href="https://profiles.google.com/109504873360376523788" itemprop="author" rel="author" title="author profile">Alex Lukyanov</a></div>
+				Posted by <a href="https://profiles.google.com/109504873360376523788" itemprop="author" rel="author" title="author profile">Alex Lukyanov</a></div>
 		</div>
 	    <div class="post-content text-content clearfix">
 	    	<? echo stripcslashes($main['text']);?>
@@ -14,9 +14,9 @@
 	        <ul class="meta-item tags clearfix">
 	             <li class="icon"><span class="glyphicon glyphicon-tag"></span></li>
 				 <?	
-				if (!empty( $main ['tags'] )):
-						$tags = explode ( ',', $main ['tags'] );
-						$tags_urls = explode ( ',', $main ['tag_urls'] );
+				if (!empty($main['tags'])):
+						$tags = explode (',', $main['tags']);
+						$tags_urls = explode (',',$main['tag_urls']);
 						$i = 0;					
 						foreach ( $tags as $tag ):				
 							echo '<li><a  href="'.$this->url(array('tag'=>$tags_urls[$i]),'tag' ).'">'.$tag.'</a></li>';
@@ -26,7 +26,7 @@
 				 ?>              
 	         </ul>
 	         <div class="meta-item comments">
-	         	<a href="<?php echo $this->url(array('articleId' =>  $main['url']),'articles'); ?>"><span class="glyphicon glyphicon-comment"></span>Read more</a>
+	         	<a href="<?php echo $this->url(array('articleId' =>  $main['url']),'articles'); ?>"><span class="glyphicon glyphicon-comment"></span>Read more <?php if ($main['comments']):?>(<?php echo $main['comments']; ?>)<?php endif;?></a>
 	         	<? if (Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isadmin == 1):?>
 	         		<a href="javascript:void(0);" onclick="deletearticle(<?php echo $main['id'];?>); return false;"><span class="glyphicon glyphicon-comment"></span>Delete</a>
 	         		<a href="<?php echo   $this->url(array('articleId' =>  $main['url']),'article_edit'); ?>"><span class="glyphicon glyphicon-comment"></span>Delete</a>
@@ -37,6 +37,7 @@
 					<div id="goto<?php echo $main['id'];?>" style="display: none; margin: 5px; border: 1px solid #4D9C32; background: #bae4ab;">
 						<div class="text">
 							<center>Article are deleted.</center>
+						</div>
 					</div>				
 					<!--@todo  refactor -->
 	         	<?php endif;?>

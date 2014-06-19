@@ -9,11 +9,11 @@ class AdminController extends Zend_Controller_Action {
 	}
 	public function indexAction(){
 	
-		$this->view->headTitle()->append(' Admin Panel');
+		$this->view->headTitle()->append('Admin Panel');
 	}
 	
 	public function addarticleAction(){
-		$this->view->headTitle()->append(' Add New Article');
+		$this->view->headTitle()->append('Add New Article');
 		$article_id=$this->_getParam('articleId');
 	 
 		if (!empty($article_id)) { // if update
