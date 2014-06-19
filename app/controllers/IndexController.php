@@ -124,12 +124,6 @@ public function indexAction()
 		$this->view->headTitle()->append('Sashas.org | LastFM');
 	}
 	
-	public function topAction() {		
-		$db = new App_Model_Articles();
-		$main = $db->GetIndex(0,'top_text',4);
-		$this->view->main = $main;
-	}
-
 	
 	public function androidpostAction(){
 		if ($this->_request->isPost()) {

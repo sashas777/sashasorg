@@ -28,5 +28,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		return $router;
 	}
 	
+	protected function _initSetupBaseUrl() {
+		$this->bootstrap('frontcontroller');
+		$controller = Zend_Controller_Front::getInstance();
+		$protocol = isset($_SERVER['HTTPS']) ? 'https' : 'http';
+		$server = $_SERVER['HTTP_HOST'];
+		$port = $_SERVER['SERVER_PORT'] != 80 ? ":{$_SERVER['SERVER_PORT']}" : '';
+		$path = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/';
+	 
+		$controller->setBaseUrl($protocol."://".$server.$port.$path);
+	}
 	 
 }

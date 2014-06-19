@@ -1,39 +1,22 @@
-
-<div id="gallery">
-	<!-- slider -->
-	<div class="gallery">
-		<ul class="items">
-			<li><img src="/public/design/images/slide1.jpg" alt="" />
-				<div class="banner">
-<!-- 					<div class="b-title">See what we can do for your business!</div> -->
-<!-- 					<div class="b-button"> -->
-<!-- 						<a href="more.html">sign up now</a> -->
-<!-- 					</div> -->
-				</div></li>
-			<li><img src="/public/design/images/slide2.jpg" alt="" />
-				<div class="banner">				
-				</div></li>
-			<li><img src="/public/design/images/slide3.jpg" alt="" />
-				<div class="banner">					
-				</div></li>
-			<li><img src="/public/design/images/slide4.jpg" alt="" />
-				<div class="banner">					
-				</div></li>
-		</ul>
-	</div>
-	<!-- slider end -->
-	<div class="pag">
-		<div class="img-pags">
-			<ul>
-				<li><a href="#"><span><img
-							src="/public/design/images/small-slide1.jpg" alt="" /></span></a></li>
-				<li><a href="#"><span><img
-							src="/public/design/images/small-slide2.jpg" alt="" /></span></a></li>
-				<li><a href="#"><span><img
-							src="/public/design/images/small-slide3.jpg" alt="" /></span></a></li>
-				<li><a href="#"><span><img
-							src="/public/design/images/small-slide4.jpg" alt="" /></span></a></li>
-			</ul>
-		</div>
-	</div>
-</div>
+<div class="slideshow-content-container clearfix">
+    <div class="row">
+        <div class="col-xs-12">
+			<div class="slideshow owl-carousel" >
+			    <div><img class=" img-responsive img-thumbnail slider" src="<?php echo $this->baseUrl(); ?>/public/media/slideshow/slide1.jpg" /></div>
+			    <div><img class=" img-responsive img-thumbnail slider" src="<?php echo $this->baseUrl(); ?>/public/media/slideshow/slide2.jpg" /></div>
+			    <div><img class=" img-responsive img-thumbnail slider" src="<?php echo $this->baseUrl(); ?>/public/media/slideshow/slide3.jpg" /></div>
+			    <div><img class=" img-responsive img-thumbnail slider" src="<?php echo $this->baseUrl(); ?>/public/media/slideshow/slide4.jpg" /></div>
+			</div>
+        </div>
+    </div>
+    <script type="text/javascript" >
+        $(document).ready(function(){
+			$(".owl-carousel").owlCarousel({
+			    'items':1,
+			    singleItem: true,
+			    autoPlay: true,
+			     loop:true,
+			});
+        });        
+    </script>
+</div>   

@@ -1,43 +1,40 @@
-<nav class="main-menu">
-	<ul class="sf-menu">
-		<li class="current"><a href="<?php echo $this->url(array(), 'default', true) ?>">Home</a></li>
-		<li class="current"><a href="about-sashas.html">About</a></li>
-		<li class="current"><a href="/sashas-magento-extensions.html">Magento</a>
-			<ul>
-				<li><a href="/magento-not-found-errors-log.html">404 (Not Found) Errors Log</a></li>
-				<li><a href="/magento-call-for-price-extension.html">Call For Price</a></li>
-				<li><a href="/magento-category-product-link-extension.html">Product Link</a></li>
-				<li><a href="http://extensions.sashas.org/free-gift.html" target="_blank">Free gift</a></li>
-				<li><a href="http://extensions.sashas.org/product-page-tabs.html" target="_blank">Product Page Tabs</a></li>
-				<li><a href="/magento-special-product-extension.html">Special Product</a></li>
-				<li><a href="http://extensions.sashas.org/order-success-page.html" target="_blank">Order Success Page</a></li>
-				<li><a href="http://extensions.sashas.org/configurable-image-swticher.html" target="_blank">Configurable Image Switcher</a></li>
-				<li><a href="http://extensions.sashas.org/category-filter.html" target="_blank">Category Filter</a></li>
-				<li><a href="http://extensions.sashas.org/widget-email-product.html" target="_blank">Widget Email Product</a></li>
-				<li><a href="/magento-how-to-make-brands-page.html" >Widget Tag Product</a></li>
-			</ul>
-		</li>
-		<li class="current"><a href="#">Social</a>
-		<ul>
-				<li><a href="<?php echo $this->url(array(),'lastfm'); ?>">LastFM Top Artists</a></li>
-				<li><a rel="external" href="http://vk.com/sashas">Vkontakte</a></li>
-				<li><a rel="external"  href="http://facebook.com/sashas777">Facebook</a></li>
-				<li><a rel="external"  href="http://lastfm.ru/user/sashas777">LastFM</a></li>
-			</ul></li>
-		<li class="current"><a href="<?php  echo $this->url(array(),'map'); ?>">Travels</a></li>
-		<li class="current"><a href="<?php echo $this->url(array(), 'tags'); ?>">Tags</a></li>
-	<?  if (!Zend_Auth::getInstance()->hasIdentity()) {?>	
-	<li class="current"><a href="<?php  echo $this->url(array(), 'auth_enter'); ?>">Login</a></li>
-	<?php } else { ?>
-	<li class="current" ><a href="<?php  echo $this->url(array(), 'admin'); ?>">User</a>
-	<ul>
-			<li><a href="<?php  echo $this->url(array(), 'admin_add_article'); ?>">Add Article</a></li>
-			<li><a href="<?php  echo $this->url(array(), 'logout'); ?>">Logout</a></li>
-	</ul>
-	</li>		
-	<?php }?>
-		<li class="current"><a href="friends.html">Friends</a></li>
-	</ul>
-	<div class="clear"></div>
-</nav>
-<div class="clear"></div>
+<ul id="main-menu" class="" >
+	<li class="menu-item"><a href="<?php echo $this->url(array(), 'default', true) ?>">Home</a></li>
+	<li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/about-sashas.html">About</a></li>
+	<li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/sashas-magento-extensions.html">Magento</a>
+	    <ul class="sub-menu">
+	        <li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/magento-not-found-errors-log.html">404 (Not Found) Errors Log</a></li>
+	        <li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/magento-call-for-price-extension.html">Call For Price</a></li>
+	        <li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/magento-category-product-link-extension.html">Category Product Link</a></li>
+	        <li class="menu-item"><a href="http://extensions.sashas.org/free-gift.html" target="_blank">Free gift</a></li>
+	        <li class="menu-item"><a href="http://extensions.sashas.org/product-page-tabs.html" target="_blank">Product Page Tabs</a></li>
+	        <li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/magento-special-product-extension.html">Special Product</a></li>
+	        <li class="menu-item"><a href="http://extensions.sashas.org/order-success-page.html" target="_blank">Order Success Page</a></li>
+	        <li class="menu-item"><a href="http://extensions.sashas.org/configurable-image-swticher.html" target="_blank">Configurable Image Switcher</a></li>
+	        <li class="menu-item"><a href="http://extensions.sashas.org/category-filter.html" target="_blank">Category Filter</a></li>
+	        <li class="menu-item"><a href="http://extensions.sashas.org/widget-email-product.html" target="_blank">Widget Email Product</a></li>
+	        <li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/magento-how-to-make-brands-page.html">Widget Tag Product</a></li>
+	    </ul>
+	</li>          
+	<li class="menu-item"><a href="<?php echo $this->url(array(),'lastfm'); ?>">LastFM</a></li>     
+	<li class="menu-item"><a href="<?php  echo $this->url(array(),'map'); ?>">Travels Map</a></li>   
+	<li class="menu-item"><a href="<?php echo $this->url(array(), 'tags'); ?>">Tag List</a></li>   
+	<li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/friends.html">Friend Links</a></li>   
+	<?php if (!Zend_Auth::getInstance()->hasIdentity()): ?>	
+		<li class="menu-item"><a href="<?php  echo $this->url(array(), 'auth_enter'); ?>">Login</a></li>   
+	<?php else:?>	 
+		<li class="menu-item"><a href="<?php  echo $this->url(array(), 'admin'); ?>">Login</a>
+		    <ul class="sub-menu">
+		        <li class="menu-item"><a href="<?php echo $this->url(array(), 'admin_add_article'); ?>">Add Article</a></li>
+		        <li class="menu-item"><a href="<?php echo $this->url(array(), 'logout'); ?>">Logout</a></li>
+		    </ul>
+		</li>    
+	<?php endif; ?>
+	<li class="menu-item"><div align="center" class="btn"  id="google_translate_element"></div></li>
+	<script type="text/javascript">
+		function googleTranslateElementInit() {
+		  new google.translate.TranslateElement({pageLanguage: 'en', multilanguagePage: true, gaTrack: true, gaId: 'UA-15906461-1'}, 'google_translate_element'); 
+		}		 
+	</script>	
+	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>                                                                              
+</ul> 

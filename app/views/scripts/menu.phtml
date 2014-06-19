@@ -1,3 +1,4 @@
+<!-- NOT USED -->
 <!-- translator-->
 <h6>Launguage</h6>	
 
@@ -8,46 +9,7 @@ function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'en', multilanguagePage: true, gaTrack: true, gaId: 'UA-15906461-1'}, 'google_translate_element');
 }
 </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-        
-	
-	
-<h6 id="vk-login-name">Vk Login</h6>		
-<!-- Put this div tag to the place, where Auth block will be -->
-<div style="padding-bottom: 10px;" >
-<center>
-	<div   id="vk_auth"></div>
-	<div class="login-photo"></div>
-</center>
-</div>
-
-<script type="text/javascript">		 
- VK.Auth.getLoginStatus(function(response) {
-	 if (response.session) {			     
-		 var id=response.session.mid;		
-		 VK.Api.call('users.get', {uids: id,fields: 'first_name, last_name, photo_big'}, function(r) {
-			  if(r.response) {
-				 // console.log(r);
-				  jQuery('#vk-login-name').html(r.response[0].first_name+' '+r.response[0].last_name);
-				  jQuery('.login-photo').html('<img align="middle" src="'+r.response[0].photo_big+'"  />')
-			  }
-			});
-		 
-	  } else {
-		  
-		  /* non authorized*/
-		  VK.Widgets.Auth("vk_auth", {width: "300px", onAuth: function(data) {
-			  alert('Hello '+data['first_name']+' '+data['last_name']+' ! You are authorized.');
-			/*  for(var item in data) {
-			 	alert(item+' '+data[item]);
-			  }*/
-			 } });		    
-			
-	  }
-});
- 
-</script>
- 
-					
+ 				
 <h6>Tags</h6>
 <p class="main-tags"><?php echo $this->action('tagleft', 'tag'); ?></p>
  

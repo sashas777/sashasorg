@@ -1,0 +1,6 @@
+/* Custom css*/
+
+a:hover, a:focus {text-decoration:none; outline: medium none !important;}
+#google_translate_element span {display:none;}
+#google_translate_element div{overflow:hidden; height:27px;}
+ 
