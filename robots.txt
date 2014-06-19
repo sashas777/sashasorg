@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Host: www.sashas.org
+Sitemap: http://sashas.org/sitemap.xml

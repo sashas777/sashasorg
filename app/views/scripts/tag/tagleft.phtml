@@ -1,0 +1,24 @@
+ <?php
+	$min_size = 10;
+	$max_size = 20;
+	$max_min = $this->max_min [0];
+	
+	$max = $max_min ['max'];
+	$min = $max_min ['min'];
+	$diff = $max_min ['diff'];
+	if ($this->alltags) echo "<div class=\"box1 all-tags\">";
+	foreach ( $this->tag as $tag ) :
+		
+		$size = $min_size + ($tag ['number'] - $min) / $diff * ($max_size - $min_size);
+		?>
+<span>
+<a  style="font-size:<? echo $size; ?>pt;" href = "<?php echo $this->url(array('tag'=> $tag['url']),'tag'); ?>"><?php echo $tag['tag']; ?></a>
+ 
+</span>
+    <?php endforeach; ?>
+
+
+<br>
+<br>
+<center> <a href="<?php echo $this->url(array(), 'tags'); ?>">Show all tags</a></center>
+<?php  if ($this->alltags) echo "</div>"; ?>

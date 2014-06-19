@@ -1,0 +1,120 @@
+<?php 
+ $main=$this->main; 
+ ?>
+<div id="article<?php echo $main->id; ?>" class="box1 article">
+ 
+	 <div class="fleft">
+		 <h5><a href='<?php echo $this->url(array('articleId' => $main->url),'articles'); ?>'><?php echo $main->title; ?></a>
+		 <g:plusone href="<?php echo $this->url(array('articleId' =>  $main->url),'articles');?>"></g:plusone></h5>
+		  <p><?php echo stripcslashes($main->text);?>
+		  <br/>
+		  	<?php if (!empty($main->full_text)) {
+					echo "<p>".stripcslashes($main->full_text)."</p>";
+					} ?>
+		  </p>
+	 </div>
+     <div class="fright">
+     <?	
+if (! empty ( $main->tags )) {
+		$i=0;
+		$tags=explode(',', $main->tags);
+		$tags_url=explode(',', $main->tag_urls);
+		foreach ( $tags as $tag){		
+			echo "<a class=\"link\"href=\"".$this->url(array('tag' => $tags_url[$i]),'tag')."\">".$tag."</a>";
+			$i++;
+		}
+	 
+	}
+	?> 		 
+		<? if (Zend_Auth::getInstance()->hasIdentity()){?>
+		  <a href='' class="link" onclick="deletearticle(<?php echo $main->id;?>); return false;">Delete</a>
+		  <a class="link" href='<?php echo   $this->url(array('articleId' =>  $main->url),'article_edit'); ?>'>Edit</a>
+  		<? }?>
+     </div>
+</div>
+<div  class="addthis">
+	<!-- AddThis Button BEGIN -->
+		<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+			<a class="addthis_button_preferred_1"></a> <a
+				class="addthis_button_preferred_2"></a> <a
+				class="addthis_button_preferred_3"></a> <a
+				class="addthis_button_preferred_4"></a> <a
+				class="addthis_button_preferred_5"></a> <a
+				class="addthis_button_preferred_6"></a> <a
+				class="addthis_button_preferred_7"></a> <a
+				class="addthis_button_preferred_8"></a> <a
+				class="addthis_button_preferred_9"></a> <a
+				class="addthis_button_preferred_10"></a> <a
+				class="addthis_button_preferred_11"></a> <a
+				class="addthis_button_preferred_12"></a> <a
+				class="addthis_button_preferred_13"></a><a
+				class="addthis_button_preferred_14"></a><a
+				class="addthis_button_preferred_15"></a><a
+				class="addthis_button_compact"></a> <a
+				class="addthis_counter addthis_bubble_style"></a>
+		</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f0f9813583963ee"></script>
+<!-- AddThis Button END -->
+</div>
+ 
+<div class="add-comment-block">
+<!--COMMENTS-->
+<form id="form_comments" enctype="application/x-www-form-urlencoded" method="post" align="center" action="">
+	 <div class="comment-form">
+		<div class="label-comment"><label for="comment" class="required">Comment:</label>	</div>
+		<textarea  class="pro_btn pro_print1 article-add-comment"  name="comment" id="comment"></textarea>	 
+		<p class="capt">						
+			<div class="capt" style="text-align:left;;" id="recaptcha_div"></div>
+		</p>
+		<input class="pro_btn pro_print2"  type="button" id="captcha" value="Show reCAPTCHA" style="float:left;" onclick="showRecaptcha('recaptcha_div');"></input> 
+		<input class="pro_btn pro_print2" align="middle" name="submit" id="submit" value="Submit Comment" style="float:left;" onclick="addcomment(<?php echo $main->id; ?>); return false;" align="middle" type="submit" /> 
+		<input  class="pro_btn pro_print2" style="float:left;" align="middle" name="reset" id="reset" value="Reset" type="reset" />	 
+     </div>
+</form>
+<script>showRecaptcha('recaptcha_div');</script>
+<center>
+	<div id="load" style="display: none;">
+		<img alt="loading.." src="/public/images/loading.gif" border="0" />
+	</div>
+	<div id="goto"
+		style="display: none; margin: 5px; border: 1px solid #4D9C32; background: #bae4ab;">
+		<p>The comment was added. Thank you!</p>
+	</div>
+	
+</center>
+
+
+</div>
+<div class="comment-block">
+<!--COMMENTS-->
+<?
+ 
+if (!empty($this->comments)) {
+foreach ( $this->comments as $comment ) :
+	?>
+<div class="box1" id="comment<?php echo $comment['id']; ?>">
+  <p>
+      <span class="date"><?php echo $comment['date']; ?></span>
+  </p>
+  <p>
+    <?php echo $comment['text']; ?>
+  </p>
+ 
+  <? if (Zend_Auth::getInstance()->hasIdentity() and  Zend_Auth::getInstance()->getIdentity()->isadmin == 1){?>
+      <a href="" class="link" onclick="deletecomment(<?php echo $comment['id']; ?>,<?php echo $main->id; ?>); return false;">Delete</a>
+  <?}?>
+
+</div>
+
+<div id="load_comm<?php echo $comment['id']; ?>" style="display: none;">
+	<img alt="loading..." src="/public/images/loading.gif" border="0">
+</div>
+
+<div id="goto_comm<?php echo $comment['id']; ?>" style="display: none; margin: 5px; border: 1px solid #4D9C32; background: #bae4ab;">
+	<p>The comment was deleted.</p>
+</div>
+<? endforeach; 
+}
+?>
+</div>

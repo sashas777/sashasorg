@@ -1,0 +1,133 @@
+<?php echo $this->doctype() ?>
+<html  xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>     
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name='yandex-verification' content='6f4ab80be6c9bdef' />
+<meta name="google-site-verification" content="R8aPGqBwGsGVZwuxjN2TWT054HQSRVAB8xTM9mY2jYc" />
+<meta name="y_key" content="24d7d9ed1731b2b7" />
+<meta name="google-translate-customization" content="3406a9f953e799e2-80af7884513ab628-gdbcdfc05ef0c8891-b" />
+<meta name="robots" content="all" />
+<meta itemprop="creator" content="Alex Lukyanov">
+<meta itemprop="name" content="Sashas.org">
+<meta itemprop="description" content="Alex Lukyanov">
+<meta itemprop="image" content="http://sashas.org/public/design/images/small-slide1.jpg">
+
+<?php 
+echo $this->headMeta()->appendName('copyright', '&copy; 2006-2013 Sashas.org');
+	$css='style.css';
+?>
+
+<link href="/public/design/css/<?php echo $css; ?>" media="screen" rel="stylesheet" type="text/css" />
+<link href="/public/design/css/sashas.css" media="screen" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/rss" />
+<link rel="shortcut icon" href="/public/images/favicon.ico" type="image/x-icon" />
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+<script type="text/javascript" src="http://userapi.com/js/api/openapi.js?34"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+<script type="text/javascript" src="/public/js/script.js"></script>
+<script type="text/javascript" src="/public/js/superfish.js"></script>
+<script type="text/javascript" src="/public/js/FF-cash.js"></script>
+<script type="text/javascript" src="/public/js/tms-0.4.1.js"></script>
+<script type="text/javascript" src="/public/js/uCarousel.js"></script>
+<script type="text/javascript" src="/public/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="/public/js/jquery.tools.min.js"></script>
+<script type="text/javascript" src="/public/js/jquery.jqtransform.js"></script>
+<script type="text/javascript" src="/public/js/jquery.quicksand.js"></script>
+<script type="text/javascript" src="/public/js/jquery.snippet.min.js"></script>
+<script type="text/javascript" src="/public/js/jquery-ui-1.8.17.custom.min.js"></script>
+<script type="text/javascript" src="/public/js/jquery.cycle.all.min.js"></script>
+<script type="text/javascript" src="/public/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/public/js/jquery.hoverIntent.minified.js"></script>
+<script type="text/javascript" src="/public/js/jquery.lightbox-0.5.min.js"></script>
+<link href="/public/design/css/jquery.lightbox-0.5.css" media="screen" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/public/js/sashas.js"></script>
+<!--[if lt IE 8]>
+   <div style=' clear: both; text-align:center; position: relative;'>
+     <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+       <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+    </a>
+  </div>
+<![endif]-->
+<!--[if lt IE 9]>
+	<script src="/public/js/html5.js"></script>
+	<link rel="stylesheet" href="css/ie.css"> 
+<![endif]-->
+ 
+<!-- Put this script tag to the <head> of your page -->
+<script type="text/javascript" src="http://userapi.com/js/api/openapi.js?49"></script>
+
+<script type="text/javascript">
+  VK.init({apiId: 1860795,nameTransportPath: 'public/xd_receiver.html', status:1});
+</script>
+<!--  vk -->
+<?php echo $this->headTitle() ?>
+
+
+</head>
+<?php if (isset($this->homepage)) {
+    $homepage=1;
+}else{
+	 
+	$homepage=0;
+}?>
+
+<body <?php if (!$homepage) { ?> class="subpage-body" <?php } ?>>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-ML92RZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-ML92RZ');</script>
+<!-- End Google Tag Manager -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-15906461-1']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<header <?php if (!$homepage) { ?> class="subpages" <?php } ?>>
+	<div class="bg-header" >
+		<div class="main">
+			<h1><a href="<?php echo $this->url(array(), 'default', true) ?>">Sashas 3.0</a></h1>
+<!-- 			top menu -->
+			<?php echo $this->partial('top_menu.phtml'); ?>
+<!-- 			end of top menu -->						
+		</div>
+		<?php if ($homepage)  echo $this->partial('slider.phtml'); ?>	
+	<?php  if ($homepage) echo $this->partial('slogan.phtml'); ?>	
+	</div>
+</header>
+
+<!-- Content -->
+<section>
+	<div class=" container_12">
+ <?php echo $this->layout()->messages; ?>	
+ <?php  if ($homepage)  echo $this->action('top', 'index'); ?>
+	  <div class="wrapper padtop">
+	  	<div  itemscope itemtype="http://schema.org/Blog" class="grid_8">	  	
+ 			<?php echo $this->layout()->content; ?>
+ 		</div>
+ 		<div class="grid_4">
+ 			<?php echo $this->partial('menu.phtml'); ?>
+ 		</div>	
+	  </div>
+	</div>
+</section>
+<!--  Footer	 -->
+<footer>
+<?php echo $this->partial('footer.phtml'); ?>	
+</footer>
+
+</body>
+</html>

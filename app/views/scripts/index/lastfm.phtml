@@ -1,0 +1,11 @@
+<div class="box1" class="lastfm">
+
+<?php foreach ($this->artists as $artist): 
+ if (!empty($artist->image)) {?>
+<div class="artist">
+ <img height="70px;" border="0" align="middle" alt="<?php echo $artist->name; ?>" src="<?php echo $artist->image; ?>">
+<div class="title"><?php echo $artist->name; ?></div>
+</div>
+<?php } ?>
+<?php endforeach; ?>
+</div>

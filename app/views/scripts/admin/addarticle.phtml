@@ -1,0 +1,43 @@
+<script type="text/javascript" src="public/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+tinyMCE.init({
+		theme : "advanced",
+        mode : "textareas"
+});
+
+</script>
+<div class="box1 admin-add-article" >
+
+<ul class="rateTabs">
+<li id="tabIn" class="rateTabOff"><a href="<?php echo $this->url(array(),'admin'); ?>">Main</a></li>
+<li id="tabOut" class="rateTabOn"><a href="<?php echo $this->url(array(),'admin_add_article'); ?>">Add Article</a></li>
+<li id="tabIn" class="rateTabOff"><a href="<?php //echo $this->url(array(),'user_edit'); ?>">Users</a></li>
+<li id="tabIn" class="rateTabOff"><a  href="<?php //echo $this->url(array(),'admin_map'); ?>">Travels</a></li>
+ </ul>
+ <br/>
+ <?php
+$article=$this->article;
+?>
+ <form action="<?php echo $this->url(array(),'adm_add'); ?>" method="POST">
+<center>
+ Title:
+ <input name="title" value="<?php if (!empty($article)) { echo $article->title; } ?>" style="width: 100%;" type="text" />
+ <br/> <br/>
+ Preview Content:
+  <br/> <br/>
+  <textarea name="preview_text" style="width: 100%; height:400px;"  ><?php if (!empty($article)) { echo $article->text; } ?></textarea>
+  <br/><br/>
+ Full content:
+  <br/> <br/>
+  <textarea name="full_text" style="width: 100%; height:600px;"><?php if (!empty($article)) { echo $article->full_text; } ?></textarea>
+  <br/> <br/>
+  <input name="tags" <?php if (!empty($article)) { echo "disabled"; } ?> value="<?php if (!empty($article)) { echo str_replace(',', ', ', $article->tags); } ?>"  style="width: 100%;" type="text"  />
+    <br/> <br/>
+    <input type="hidden" name="article_id" value="<?php if (!empty($article)) { echo str_replace(',', ', ', $article->id); } ?>" />
+  <input   class="pro_btn pro_print2"  type="submit" value="Submit Article" />
+  </center>
+  </form>
+  
+  </div>
+  
+  
