@@ -107,6 +107,10 @@ public function indexAction()
 		$this->view->headMeta()->appendName('description', $main->title);
  
 		$this->view->headTitle()->append($main->title);
+		
+		/* process links */
+		$main->text=str_replace("{{website_url}}",Zend_Controller_Front::getInstance()->getBaseUrl(), $main->text);
+		$main->full_text=str_replace("{{website_url}}",Zend_Controller_Front::getInstance()->getBaseUrl(), $main->full_text);
 		$this->view->main = $main;
 	 		 
 		// pager and comments

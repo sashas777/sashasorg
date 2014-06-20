@@ -5,20 +5,25 @@
 	
 	$max = $max_min ['max'];
 	$min = $max_min ['min'];
-	$diff = $max_min ['diff'];
-	if ($this->alltags) echo "<div class=\"box1 all-tags\">";
-	foreach ( $this->tag as $tag ) :
-		
-		$size = $min_size + ($tag ['number'] - $min) / $diff * ($max_size - $min_size);
-		?>
-<span>
-<a  style="font-size:<? echo $size; ?>pt;" href = "<?php echo $this->url(array('tag'=> $tag['url']),'tag'); ?>"><?php echo $tag['tag']; ?></a>
- 
-</span>
-    <?php endforeach; ?>
-
-
-<br>
-<br>
-<center> <a href="<?php echo $this->url(array(), 'tags'); ?>">Show all tags</a></center>
-<?php  if ($this->alltags) echo "</div>"; ?>
+	$diff = $max_min ['diff']; 
+?>
+<div   class="post-item isolated-block col-xs-12 col-lg-12  all-tags">
+	<h1>All Tags 	 
+	 	<div class="g-plusone" href="<?php echo $this->url(array('articleId' =>  $main->url),'articles');?>" data-size="medium"></div> 
+	 </h5>
+	</h1>
+	<div class="meta post-header clearfix">
+			<div class="meta-item posted-by"><span class="glyphicon glyphicon-user"></span>
+				Posted by <a href="https://profiles.google.com/109504873360376523788" itemprop="author" rel="author" title="author profile">Alex Lukyanov</a></div>
+	</div>	
+ 	<div class="media-body">
+ 		<ul class="meta-item tags clearfix"> 
+		<?php 	
+			foreach ( $this->tag as $tag ) :		
+			$size = $min_size + ($tag ['number'] - $min) / $diff * ($max_size - $min_size);
+		?> 
+ 			<li><a  style="font-size:<? echo $size; ?>pt;" href = "<?php echo $this->url(array('tag'=> $tag['url']),'tag'); ?>"><?php echo $tag['tag']; ?></a></li> 	 
+    	<?php endforeach; ?>
+    	</ul>
+ 	</div>
+ </div> 

@@ -37,3 +37,9 @@ blockquote {
 .post-content p img { margin: 0px auto;}
 /*LastFM*/
 .post-content .artist {float:left;}
+
+.list-inline li {padding: 10px 5px;}
+.thumbnail-small {max-width:100px;}
+.thumbnail-medium {max-width: 150px;}
+.thumbnail-440 {max-width:440px;}
+.post-gallery {margin-top:15px;}

@@ -7,12 +7,21 @@
 			Posted by <a href="https://profiles.google.com/109504873360376523788" itemprop="author" rel="author" title="author profile">Alex Lukyanov</a></div>
 	</div>
     <div class="post-content text-content clearfix">
-		<?php foreach ($this->artists as $artist):?> 
+    	<?php $_i=0;?>    
+		<?php foreach ($this->artists as $artist):?> 			
 		 	<?php if (!empty($artist->image)):?>
-				<div class="artist col-lg-1">
-				 <img   border="0" align="middle" alt="<?php echo $artist->name; ?>" src="<?php echo $artist->image; ?>">
-				<div class="title"><?php echo $artist->name; ?></div>
-				</div>				
+		 		 
+		 		<?php if( $_i%6==0):?>
+		 			<div class="artist-row row">
+		 		<?php endif; ?>
+					<div class="artist col-lg-2">
+					 <img   border="0" align="middle" alt="<?php echo $artist->name; ?>" src="<?php echo $artist->image; ?>">
+					<div class="title"><?php echo $artist->name; ?></div>
+					</div>		
+		 		<?php if( $_i%6==5):?>
+		 			</div>
+		 		<?php endif; ?>				
+				<?php $_i++;?>		
 			<?php endif; ?>
 		<?php endforeach; ?>
     </div> 

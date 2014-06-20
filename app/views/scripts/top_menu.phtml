@@ -1,7 +1,7 @@
 <ul id="main-menu" class="" >
 	<li class="menu-item"><a href="<?php echo $this->url(array(), 'default', true) ?>">Home</a></li>
 	<li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/about-sashas.html">About</a></li>
-	<li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/sashas-magento-extensions.html">Magento</a>
+	<li class="menu-item"><a target="_blank" href="http://extensions.sashas.org">Magento</a>
 	    <ul class="sub-menu">
 	        <li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/magento-not-found-errors-log.html">404 (Not Found) Errors Log</a></li>
 	        <li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/magento-call-for-price-extension.html">Call For Price</a></li>
@@ -16,10 +16,9 @@
 	        <li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/magento-how-to-make-brands-page.html">Widget Tag Product</a></li>
 	    </ul>
 	</li>          
-	<li class="menu-item"><a href="<?php echo $this->url(array(),'lastfm'); ?>">LastFM</a></li>     
+	<li class="menu-item"><a href="<?php echo $this->url(array(),'lastfm'); ?>">Music</a></li>     
 	<li class="menu-item"><a href="<?php  echo $this->url(array(),'map'); ?>">Travels Map</a></li>   
-	<li class="menu-item"><a href="<?php echo $this->url(array(), 'tags'); ?>">Tag List</a></li>   
-	<li class="menu-item"><a href="<?php echo $this->baseUrl(); ?>/friends.html">Friend Links</a></li>   
+	<li class="menu-item"><a href="<?php echo $this->url(array(), 'tags'); ?>">Tag List</a></li>    
 	<?php if (!Zend_Auth::getInstance()->hasIdentity()): ?>	
 		<li class="menu-item"><a href="<?php  echo $this->url(array(), 'auth_enter'); ?>">Login</a></li>   
 	<?php else:?>	 

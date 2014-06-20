@@ -1,20 +1,26 @@
 <?php  $main=$this->main; ?>
 <div  id="article<?php echo $main->id; ?>"  class="post-item isolated-block col-xs-12 col-lg-12">
 	<h1><?php echo $main->title; ?>	 	 
-	 	<div class="g-plusone" href="<?php echo $this->url(array('articleId' =>  $main->url),'articles');?>" data-size="medium"></div> 
-	 </h5>
+	 	<div class="g-plusone" href="<?php echo $this->url(array('articleId' =>  $main->url),'articles');?>" data-size="medium"></div>  
 	</h1>
-	<div class="meta post-header clearfix">
-			<div class="meta-item posted-by"><span class="glyphicon glyphicon-user"></span>
-				Posted by <a href="https://profiles.google.com/109504873360376523788" itemprop="author" rel="author" title="author profile">Alex Lukyanov</a></div>
-	</div>
+	<?php if ($main->article_type!='static') : ?>
+		<div class="meta post-header clearfix">
+				<div class="meta-item posted-by"><span class="glyphicon glyphicon-user"></span>
+					Posted by <a href="https://profiles.google.com/109504873360376523788" itemprop="author" rel="author" title="author profile">Alex Lukyanov</a></div>
+		</div>
+	<?php endif;?>
     <div class="post-content text-content clearfix">
+    	<div class="intro-text"> 
     	<?php echo stripcslashes($main->text);?>
+    	</div>
+    	<div class="full-text"> 
     	<?php if (!empty($main->full_text)) : ?>
 			 <?php echo stripcslashes($main->full_text) ;?>
 		<?php endif; ?>
+		</div>
     </div> 
-	<div class="meta post-header post-footer clearfix">
+	<div class="meta post-header post-footer clearfix">	
+		<?php if ($main->article_type!='static') : ?>
 	    <ul class="meta-item tags clearfix">
 	         <li class="icon"><span class="glyphicon glyphicon-tag"></span></li>
 				 <?	
@@ -29,6 +35,7 @@
 					endif;
 				 ?>  	         
 	     </ul>
+	     <?php endif;?>
      	 <div  class="addthis pull-right">
 		 <!-- AddThis Button BEGIN -->
 			<div class="addthis_toolbox addthis_default_style addthis_24x24_style">
@@ -63,89 +70,91 @@
 		</div> 		 	
   		<? endif;?>				  	
 	</div>	
-	<div class="comment-box text-right clearfix" id="comment-form">
-		<h2><span class="glyphicon glyphicon-comment"></span> Leave a Comment</h2>
-		<div class="comment-form-container col-lg-12">
-			<form role="form" id="form_comments" class="col-lg-6 comments-form form-horizontal" enctype="application/x-www-form-urlencoded" method="post" align="center" action="">
-				 <div class="form-group">
-					<textarea  class="form-control article-add-comment"  placeholder="Enter message" name="comment" id="comment"></textarea>	
-				 </div> 
-				 <!--  -->
-				 <script type="text/javascript">
-					 var RecaptchaOptions = {
-					    theme : 'custom',
-					    custom_theme_widget: 'recaptcha_widget'
-					 };
-				 </script>				 
-                 <div id="recaptcha_widget" class="clearfix" style="display:none">
-                 	<div class="form-group">
-                    	<div class="controls captcha-image">                                
-                        	<div id="recaptcha_image" class="img-thumbnail"></div>
-                        	<div class="recaptcha_only_if_incorrect_sol" style="color:red">Incorrect please try again</div>
-                    	</div>
-                 	</div>
-                 	<div class="form-group">
-						<label for="recaptcha_response_field" class="col-lg-4 recaptcha_only_if_image control-label">Enter the words above:</label>
-						<label for="recaptcha_response_field" class="col-lg-4 recaptcha_only_if_audio control-label">Enter the numbers you hear:</label>
-					    <div class="col-sm-4">
-					      <input type="text" id="recaptcha_response_field" class="form-control" name="recaptcha_response_field" />
-					    </div>   							 
-						<ul class="col-sm-4 recaptcha-buttons clearfix">
-							<li><a class="" href="javascript:Recaptcha.reload()"><i class="fa fa-refresh"></i></a></li>
-							<li class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')"><i title="Get an audio CAPTCHA" class="fa fa-headphones"></i></a></li>
-							<li class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')"><i title="Get an image CAPTCHA" class="fa fa-image"></i></a></li>
-							<li><a class="" href="javascript:Recaptcha.showhelp()"><i class="fa fa-question"></i></a></li>
-						</ul> 						          
-					</div>        	
-                 	<div class="form-group">
-                 		<div class="col-lg-12"> 
-                 			<div class="col-lg-7"> 
-                 				<input class="btn-outline-inverse btn pull-right" align="middle" name="submit" id="submit" value="Submit Comment" style="float:left;" onclick="addcomment(<?php echo $main->id; ?>); return false;" align="middle" type="submit" /> 
-                 			</div>
-                 			<div class="col-lg-5 "> 
-                 				<input class="btn-outline-inverse btn" style="float:left;" align="middle" name="reset" id="reset" value="Reset" type="reset" />
-                 			</div>                 															 	   
-						</div> 
-					</div>              	
-                 </div>				  
-				 <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6LerpMgSAAAAAGSOZvNwJpyBYUhUxC5sMaqSes2X"></script>
-				 <noscript>
-				 	<iframe src="http://www.google.com/recaptcha/api/noscript?k=6LerpMgSAAAAAGSOZvNwJpyBYUhUxC5sMaqSes2X" height="300" width="500" frameborder="0"></iframe><br>
-				 	<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
-				 	<input type="hidden" name="recaptcha_response_field" value="manual_challenge">
-				 </noscript>				 
-			</form>
-			<div id="load" class="col-lg-12 ajax-loader hide clearfix"><img  class="center-block" alt="loading.." src="<?php echo $this->baseUrl(); ?>/public/images/ajaxLoader.gif" border="0" /></div>
-			<div id="goto" class="col-lg-12 ajax-loader-success text-center hide clearfix"><span class="center-block">The comment was added. Thank you!</span></div>						
-		</div>
- 
-	</div>  
-	<?php if (!empty($this->comments)): ?>	
-		<div class="comment-box comments-list clearfix" id="comments-area">
-			<h2>Comments</h2>
-			<?php foreach ( $this->comments as $comment ):?>
-				<div class="media clearfix" id="comment<?php echo $comment['id']; ?>">
-			        <div class="media-header">
-			        	<span class="comment-date"><span class="glyphicon glyphicon-pushpin"></span><?php echo $comment['date']; ?></span>
-			        </div>	 	
-					<div class="media-body">
-						<?php echo $comment['text']; ?>
-					</div>
-					<?php if (Zend_Auth::getInstance()->hasIdentity() and  Zend_Auth::getInstance()->getIdentity()->isadmin == 1): ?>
-					<div lass="media-footer">
-						<a href="" class="link" onclick="deletecomment(<?php echo $comment['id']; ?>,<?php echo $main->id; ?>); return false;">Delete</a>
-					</div>     				 
-	  				<?php endif;?>	
-	  				<!-- @todo refactor -->
-					<div id="load_comm<?php echo $comment['id']; ?>" class="col-lg-12 ajax-loader hide clearfix">
-						<img class="center-block"  alt="loading..." src="<?php echo $this->baseUrl(); ?>/public/images/ajaxLoader.gif" border="0">
-					</div>					
-					<div  class="col-lg-12 ajax-loader-success text-center hide clearfix" id="goto_comm<?php echo $comment['id']; ?>">
-						<span class="center-block">The comment has been deleted.</span>
-					</div>
- 	  				<!-- @todo refactor -->				
-				</div>				
-			<?php endforeach;?>                   		                     
-		</div>   		 
+	<?php if ($main->article_type!='static') : ?>	
+		<div class="comment-box text-right clearfix" id="comment-form">
+			<h2><span class="glyphicon glyphicon-comment"></span> Leave a Comment</h2>
+			<div class="comment-form-container col-lg-12">
+				<form role="form" id="form_comments" class="col-lg-6 comments-form form-horizontal" enctype="application/x-www-form-urlencoded" method="post" align="center" action="">
+					 <div class="form-group">
+						<textarea  class="form-control article-add-comment"  placeholder="Enter message" name="comment" id="comment"></textarea>	
+					 </div> 
+					 <!--  -->
+					 <script type="text/javascript">
+						 var RecaptchaOptions = {
+						    theme : 'custom',
+						    custom_theme_widget: 'recaptcha_widget'
+						 };
+					 </script>				 
+	                 <div id="recaptcha_widget" class="clearfix" style="display:none">
+	                 	<div class="form-group">
+	                    	<div class="controls captcha-image">                                
+	                        	<div id="recaptcha_image" class="img-thumbnail"></div>
+	                        	<div class="recaptcha_only_if_incorrect_sol" style="color:red">Incorrect please try again</div>
+	                    	</div>
+	                 	</div>
+	                 	<div class="form-group">
+							<label for="recaptcha_response_field" class="col-lg-4 recaptcha_only_if_image control-label">Enter the words above:</label>
+							<label for="recaptcha_response_field" class="col-lg-4 recaptcha_only_if_audio control-label">Enter the numbers you hear:</label>
+						    <div class="col-sm-4">
+						      <input type="text" id="recaptcha_response_field" class="form-control" name="recaptcha_response_field" />
+						    </div>   							 
+							<ul class="col-sm-4 recaptcha-buttons clearfix">
+								<li><a class="" href="javascript:Recaptcha.reload()"><i class="fa fa-refresh"></i></a></li>
+								<li class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')"><i title="Get an audio CAPTCHA" class="fa fa-headphones"></i></a></li>
+								<li class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')"><i title="Get an image CAPTCHA" class="fa fa-image"></i></a></li>
+								<li><a class="" href="javascript:Recaptcha.showhelp()"><i class="fa fa-question"></i></a></li>
+							</ul> 						          
+						</div>        	
+	                 	<div class="form-group">
+	                 		<div class="col-lg-12"> 
+	                 			<div class="col-lg-7"> 
+	                 				<input class="btn-outline-inverse btn pull-right" align="middle" name="submit" id="submit" value="Submit Comment" style="float:left;" onclick="addcomment(<?php echo $main->id; ?>); return false;" align="middle" type="submit" /> 
+	                 			</div>
+	                 			<div class="col-lg-5 "> 
+	                 				<input class="btn-outline-inverse btn" style="float:left;" align="middle" name="reset" id="reset" value="Reset" type="reset" />
+	                 			</div>                 															 	   
+							</div> 
+						</div>              	
+	                 </div>				  
+					 <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6LerpMgSAAAAAGSOZvNwJpyBYUhUxC5sMaqSes2X"></script>
+					 <noscript>
+					 	<iframe src="http://www.google.com/recaptcha/api/noscript?k=6LerpMgSAAAAAGSOZvNwJpyBYUhUxC5sMaqSes2X" height="300" width="500" frameborder="0"></iframe><br>
+					 	<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+					 	<input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+					 </noscript>				 
+				</form>
+				<div id="load" class="col-lg-12 ajax-loader hide clearfix"><img  class="center-block" alt="loading.." src="<?php echo $this->baseUrl(); ?>/public/images/ajaxLoader.gif" border="0" /></div>
+				<div id="goto" class="col-lg-12 ajax-loader-success text-center hide clearfix"><span class="center-block">The comment was added. Thank you!</span></div>						
+			</div>
+	 
+		</div>  
+		<?php if (!empty($this->comments)): ?>	
+			<div class="comment-box comments-list clearfix" id="comments-area">
+				<h2>Comments</h2>
+				<?php foreach ( $this->comments as $comment ):?>
+					<div class="media clearfix" id="comment<?php echo $comment['id']; ?>">
+				        <div class="media-header">
+				        	<span class="comment-date"><span class="glyphicon glyphicon-pushpin"></span><?php echo $comment['date']; ?></span>
+				        </div>	 	
+						<div class="media-body">
+							<?php echo $comment['text']; ?>
+						</div>
+						<?php if (Zend_Auth::getInstance()->hasIdentity() and  Zend_Auth::getInstance()->getIdentity()->isadmin == 1): ?>
+						<div lass="media-footer">
+							<a href="" class="link" onclick="deletecomment(<?php echo $comment['id']; ?>,<?php echo $main->id; ?>); return false;">Delete</a>
+						</div>     				 
+		  				<?php endif;?>	
+		  				<!-- @todo refactor -->
+						<div id="load_comm<?php echo $comment['id']; ?>" class="col-lg-12 ajax-loader hide clearfix">
+							<img class="center-block"  alt="loading..." src="<?php echo $this->baseUrl(); ?>/public/images/ajaxLoader.gif" border="0">
+						</div>					
+						<div  class="col-lg-12 ajax-loader-success text-center hide clearfix" id="goto_comm<?php echo $comment['id']; ?>">
+							<span class="center-block">The comment has been deleted.</span>
+						</div>
+	 	  				<!-- @todo refactor -->				
+					</div>				
+				<?php endforeach;?>                   		                     
+			</div>   		 
+		<?php endif; ?>
 	<?php endif; ?>
 </div>

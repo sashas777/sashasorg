@@ -131,7 +131,7 @@
 ############################################
 ## always send 404 on missing files in these folders
 
- 	RewriteCond %{REQUEST_URI} !^/(public|app|images|library)/
+ 	RewriteCond %{REQUEST_URI} !^/(public|app|images|library|media)/
 
 ############################################
 ## never rewrite for existing files, directories and links
