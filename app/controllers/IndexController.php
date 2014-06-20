@@ -179,10 +179,12 @@ public function indexAction()
 				 $img_helper->load("images/android/" .$pic_name);
 				// $img_helper->resizeToWidth(565);
 				 $img_helper->save("images/android/" .$pic_name);
-				 $content='<div  class="col-lg-12"><img alt="" src="/images/android/'.$pic_name.'" ></div> ';
+				
 			}else {
 				die('File saving error');
 			}
+			
+			$content='<div  class="col-lg-12"><img alt="" src="/images/android/'.$pic_name.'" ></div> ';
 			/*generate content*/
 			$data = array('author_id'=> 15, //admin
 					'title'=> $title,
