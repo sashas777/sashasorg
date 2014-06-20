@@ -1,0 +1,24 @@
+<?php if (!empty($this->comment)): ?>	
+<?php $comment=$this->comment;?>
+<div class="media clearfix" id="comment<?php echo $comment->id; ?>">
+        <div class="media-header">
+        	<span class="comment-date"><span class="glyphicon glyphicon-pushpin"></span><?php echo $comment->date; ?></span>
+        </div>	 	
+		<div class="media-body">
+			<?php echo $comment->text; ?>
+	</div>
+	<?php if (Zend_Auth::getInstance()->hasIdentity() and  Zend_Auth::getInstance()->getIdentity()->isadmin == 1): ?>
+	<div lass="media-footer">
+		<a href="" class="link" onclick="deletecomment(<?php echo $comment->id; ?>,<?php echo $this->article_id; ?>); return false;">Delete</a>
+				</div>     				 
+  				<?php endif;?>	
+  	<!-- @todo refactor -->
+	<div id="load_comm<?php echo $comment->id; ?>" class="col-lg-12 ajax-loader hide clearfix">
+		<img class="center-block"  alt="loading..." src="<?php echo $this->baseUrl(); ?>/public/images/ajaxLoader.gif" border="0">
+	</div>					
+	<div   class="col-lg-12 ajax-loader-success text-center hide clearfix" id="goto_comm<?php echo $comment->id; ?>">
+		<span class="center-block">The comment was deleted.</span>
+	</div>
+ 	 <!-- @todo refactor -->				
+</div>
+<?php endif;?>	

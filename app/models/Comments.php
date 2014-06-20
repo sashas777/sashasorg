@@ -14,9 +14,15 @@ class App_Model_Comments  {
  	$result = $db->addComment($data);
  	$ArticleId=$data['item_id'];
  	$article_model= new App_Model_Articles();
- 	$article_model->addcomment($ArticleId);
- 	
+ 	$article_model->addcomment($ArticleId); 	
  }
+ 
+ public function getLastComment(){
+ 	$db = new App_Model_DbTable_Comments ();
+ 	$result = $db->getLastComment();
+ 	return $result;
+ } 
+ 
  public function deletecomment($commentId, $ArticleId) {
  	$db = new App_Model_DbTable_Comments ();
  	$db->deleteComment($commentId);

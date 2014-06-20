@@ -115,13 +115,10 @@
 				 	<input type="hidden" name="recaptcha_response_field" value="manual_challenge">
 				 </noscript>				 
 			</form>
+			<div id="load" class="col-lg-12 ajax-loader hide clearfix"><img  class="center-block" alt="loading.." src="<?php echo $this->baseUrl(); ?>/public/images/ajaxLoader.gif" border="0" /></div>
+			<div id="goto" class="col-lg-12 ajax-loader-success text-center hide clearfix"><span class="center-block">The comment was added. Thank you!</span></div>						
 		</div>
-		<!-- @todo refactor -->
-		<div id="load" style="display: none;"><img alt="loading.." src="/public/images/loading.gif" border="0" /></div>
-		<div id="goto" style="display: none; margin: 5px; border: 1px solid #4D9C32; background: #bae4ab;">
-			<p>The comment was added. Thank you!</p>
-		</div>		
-		<!-- @todo refactor -->		
+ 
 	</div>  
 	<?php if (!empty($this->comments)): ?>	
 		<div class="comment-box comments-list clearfix" id="comments-area">
@@ -140,12 +137,11 @@
 					</div>     				 
 	  				<?php endif;?>	
 	  				<!-- @todo refactor -->
-					<div id="load_comm<?php echo $comment['id']; ?>" style="display: none;">
-						<img alt="loading..." src="/public/images/loading.gif" border="0">
-					</div>
-					
-					<div id="goto_comm<?php echo $comment['id']; ?>" style="display: none; margin: 5px; border: 1px solid #4D9C32; background: #bae4ab;">
-						<p>The comment was deleted.</p>
+					<div id="load_comm<?php echo $comment['id']; ?>" class="col-lg-12 ajax-loader hide clearfix">
+						<img class="center-block"  alt="loading..." src="<?php echo $this->baseUrl(); ?>/public/images/ajaxLoader.gif" border="0">
+					</div>					
+					<div  class="col-lg-12 ajax-loader-success text-center hide clearfix" id="goto_comm<?php echo $comment['id']; ?>">
+						<span class="center-block">The comment has been deleted.</span>
 					</div>
  	  				<!-- @todo refactor -->				
 				</div>				

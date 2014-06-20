@@ -96,6 +96,7 @@ public function indexAction()
 			$this->_helper->redirector->gotoRoute(array(), 'default');
 		}
 		$articleId=$main->id;
+		Zend_Registry::set('article_id', $articleId);
 		$helper = new Zend_View_Helper_Url();	
 // 		$main[0]->text=str_replace('public'.DIRECTORY_SEPARATOR.'images',DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'images',$main[0]->text);		
 		//Keywords
@@ -118,7 +119,6 @@ public function indexAction()
 		$as = new Zend_Service_Audioscrobbler();
 		// Set the user whose profile information we want to retrieve
 		$as->setUser('sashas777');
-		// Retrieve BigDaddy71's profile information
 		$artists = $as->userGetTopArtists();
 		$this->view->artists=$artists;
 		$this->view->headTitle()->append('LastFM');

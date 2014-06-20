@@ -50,6 +50,21 @@ class CommentsController extends Zend_Controller_Action {
 		}	
 	}
 	
+	public function getlastAction() {
+		if ($this->getRequest ()->isXmlHttpRequest ()) {
+			$articleId = $this->_getParam ('artid' );
+			Zend_Registry::set('article_id', $articleId);
+			$this->_helper->layout->disableLayout ();
+			$this->_helper->viewRenderer->setNoRender ();			 
+			$comment_model = new App_Model_Comments();
+			$comment=$comment_model->GetLastComment();
+			$this->view->comment=$comment;
+			$this->view->article_id=$articleId;
+			$comment_html = $this->view->render('comments/single.phtml');
+			$this->_response->appendBody ($comment_html);
+		}
+	}
+	
 	public function deleteAction(){
 		$articleId = $this->_getParam ( 'artid' );
 		$comment = $this->_getParam ( 'comId' );

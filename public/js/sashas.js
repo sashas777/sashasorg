@@ -17,9 +17,9 @@ function login() {
 				}
 			});
 }
-
+/*Refactor*/
 function deletearticle(artid) {
-	$('#load' + artid).show();
+	$('#load').addClass('show');
 	// ajax
 	$.get('/admin/deletarticleajax/artid/' + artid, function(data) {
 		var results = jQuery.parseJSON(data);
@@ -36,44 +36,75 @@ function deletearticle(artid) {
 }
 
 function addcomment(artid) {
-	$('#load').show();
-	comment = $('#comment').val();
+	$('.comments-form').removeClass('show').addClass('hide');
+	$('#load').addClass('show');
+	$('.article-add-comment').parent().removeClass("has-error");
+	$('#recaptcha_response_field').parent().removeClass("has-error");
+	$('#goto span').removeClass("bg-danger");
+	$('#goto').addClass('hide');
+	comment_field = $('.article-add-comment') 
+	if (comment_field.val().length==null || comment_field.val().length<1) {
+		$('.comments-form').removeClass('hide').addClass('show');
+		$('#load').removeClass('show').addClass('hide');			
+		$('.article-add-comment').parent().addClass("has-error");
+		$('#goto').addClass('show');
+		$('#goto span').text('Please enter comment message').addClass('bg-danger');
+		return false;
+	}
+		
 	key1 = Recaptcha.get_challenge();
 	key2 = Recaptcha.get_response();
 
-	$.get('/comments/addcomment/comment/' + comment + '/artid/' + artid
+	$.get('/comments/addcomment/comment/' + comment_field.val() + '/artid/' + artid
 			+ '/key1/' + key1 + '/key2/' + key2, function(data) {
 		var results = jQuery.parseJSON(data);
-		if (results.result == 'success') {
-			$('#form_comments').hide();
-			$('#load').hide();
-			$('#goto').show();
+		if (results.result == 'success') {		 
+			$('#load').removeClass('show').addClass('hide');
+			$('#goto').addClass('show');	
+			$('#goto span').addClass('bg-success').text('Thank you. Comment has been added');
+
+			$.ajax({ 
+				async: true,
+				url: '/comments/getlast/',
+				type: "GET",
+				 data: {artid:artid}, 
+				 success: function(data) {				 
+					 $(data).insertBefore( ".comments-list div:first");
+				 }
+			});			
 		} else {
 			if (results.result == 'captcha') {
-				$('#load').hide();
-				showRecaptcha('recaptcha_div');
-				alert('Error. Please check Captcha');
+				$('.comments-form').removeClass('hide').addClass('show');
+				$('#load').removeClass('show').addClass('hide');			 				 
+				$('#goto span').text('Error. Please check Captcha').addClass('bg-danger');
+				$('#goto').addClass('show');
+				$('#recaptcha_response_field').parent().addClass("has-error");				 				
 			} else {
-				$('#load').hide();
-				alert('Error. Please try again. ');
+			 
+				$('.comments-form').removeClass('hide').addClass('show');
+				$('#load').removeClass('show').addClass('hide');
+				$('#goto').addClass('show');
+				$('#goto span').text('Error. Please try again.').addClass('bg-danger');
 			}
 		}
 	});
 }
-
-function deletecomment(artid, arttid) {
-	$('#load_comm' + artid).show();
-
+/*Refactor*/
+function deletecomment(artid, arttid) {	 
+	$('#load_comm' + artid).addClass('show');
+	$('#goto_comm' + artid+' span').removeClass('bg-danger');		
 	$.get('/comments/delete/comId/' + artid + '/artid/' + arttid,
 			function(data) {
 				var results = jQuery.parseJSON(data);
 				if (results.result == 'success') {
-					$('#comment' + artid).hide();
-					$('#load_comm' + artid).hide();
-					$('#goto_comm' + artid).show();
+					$('#comment' + artid).addClass('hide');
+					$('#load_comm' + artid).addClass('hide');
+					$('#goto_comm' + artid).addClass('show');
+					$('#goto_comm' + artid+' span').text('Comment has been deleted').addClass('bg-success');		
 				} else {
-					$('#load_comm' + artid).hide();
-					alert('Comment doesn\'t deleted. Please try again =) ');
+					$('#load_comm' + artid).addClass('hide');
+					$('#goto_comm' + artid).addClass('show');
+					$('#goto_comm' + artid+' span').text('Error please try again').addClass('bg-danger');				 
 				}
 			});
 }

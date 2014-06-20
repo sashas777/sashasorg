@@ -14,6 +14,20 @@ class App_Model_DbTable_Comments extends Zend_Db_Table_Abstract
 		return $result;
 	}
 	
+	public function getLastComment( ){
+		
+		$articleId=Zend_Registry::get('article_id');		 
+		$select = $this->select()
+		->setIntegrityCheck(false)
+		->where ( 'item_id = ?', $articleId )
+		->order ( 'id DESC' )
+		->limit(1);
+		 
+		$stmt = $select->query();
+		$result = $stmt->fetchObject();
+		return $result;		
+	}
+	
 	public function addcomment($userData){	
 		parent::insert($userData);
 		return true;
