@@ -1,40 +1,61 @@
-<script type="text/javascript" src="public/tiny_mce/tiny_mce.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/public/js/tiny_mce/jquery.tinymce.min.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/public/js/tiny_mce/tinymce.min.js"></script>
 <script type="text/javascript">
-tinyMCE.init({
-		theme : "advanced",
-        mode : "textareas"
-});
-
+ 
+tinymce.init({
+	 plugins : 'autoresize charmap contextmenu image media template visualblocks code link paste visualchars autolink preview',
+	//  plugins : 'safari,pagebreak,style,layer,table,advhr,advimage,emotions,iespell,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras',
+	  selector: "textarea",
+	  image_advtab: true,
+	  
+	});
 </script>
+<?php
+	$article=$this->article;
+?>
 <div  class="post-item isolated-block col-xs-12 col-lg-12">
 	<h1>Add New Article</h1>
 	<div class="post-content text-content clearfix">
+		<form action="<?php echo $this->url(array(),'adm_add'); ?>" role="form"  class="article-form  form-horizontal" method="post">
+		
+			<div class="form-group">
+		 	<label for="title" class="required col-lg-2  control-label">Title:</label>
+		 		<div class="col-lg-10">
+		 			<input id="title" name="title" value="<?php if (!empty($article)) { echo $article->title; } ?>" class="form-control" type="text" />
+		 		</div>
+		 	</div>
+		
+			<div class="form-group">
+		 	<label for="intro_text" class="required c control-label">Main Content:</label>
+		 		 
+		 			  <textarea id="intro_text" name="preview_text" rows="12" class="form-control"  ><?php if (!empty($article)) { echo $article->text; } ?></textarea>
+		 		 
+		 	</div>		
+		 
+			<div class="form-group">
+		 	<label for="full_text" class="required control-label">Additional content:</label>
+		
+		 			  <textarea id="full_text" name="full_text" rows="12"  class="form-control"  ><?php if (!empty($article)) { echo $article->full_text; } ?></textarea>
+
+		 	</div>		
+		 	
+			<div class="form-group">
+		 	<label for="tags" class="required col-lg-2  control-label">Tags:</label>
+		 		<div class="col-lg-10">
+		 			 <input id="tags" name="tags" <?php if (!empty($article)) { echo "disabled"; } ?> value="<?php if (!empty($article)) { echo str_replace(',', ', ', $article->tags); } ?>" class="form-control" type="text"  />
+		 		</div>
+		 	</div>			 		 	
+		 	 <input type="hidden" name="article_id" value="<?php if (!empty($article)) { echo str_replace(',', ', ', $article->id); } ?>" />
+		 
+		 <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-2 pull-right">
+				  <input class="form-control btn btn-default"  type="submit" value="Add Article" />
+			</div>
+		</div>		 	 
+		
+		</form>
 	</div>
 </div>
-<div class="box1 admin-add-article" >
- <?php
-$article=$this->article;
-?>
- <form action="<?php echo $this->url(array(),'adm_add'); ?>" method="POST">
-<center>
- Title:
- <input name="title" value="<?php if (!empty($article)) { echo $article->title; } ?>" style="width: 100%;" type="text" />
- <br/> <br/>
- Preview Content:
-  <br/> <br/>
-  <textarea name="preview_text" style="width: 100%; height:400px;"  ><?php if (!empty($article)) { echo $article->text; } ?></textarea>
-  <br/><br/>
- Full content:
-  <br/> <br/>
-  <textarea name="full_text" style="width: 100%; height:600px;"><?php if (!empty($article)) { echo $article->full_text; } ?></textarea>
-  <br/> <br/>
-  <input name="tags" <?php if (!empty($article)) { echo "disabled"; } ?> value="<?php if (!empty($article)) { echo str_replace(',', ', ', $article->tags); } ?>"  style="width: 100%;" type="text"  />
-    <br/> <br/>
-    <input type="hidden" name="article_id" value="<?php if (!empty($article)) { echo str_replace(',', ', ', $article->id); } ?>" />
-  <input   class="pro_btn pro_print2"  type="submit" value="Submit Article" />
-  </center>
-  </form>
-  
-  </div>
+ 
   
   
