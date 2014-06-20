@@ -54,6 +54,17 @@
 	background: transparent no-repeat url(data:image/gif;base64,R0lGODlhEgAKAIABALu7u////yH5BAEAAAEALAAAAAASAAoAAAIfjI9poI0cgDywrhuxfbrzDEbQM2Ei5aRjmoySW4pAAQA7);
 }
 
+.mce-visualblocks div.col-lg-6 {
+	padding-top: 10px;
+	border: 1px dashed #BBB;
+	margin-left: 3px;
+	width:45%;
+	float:left;
+ padding-left: 15px;
+    padding-right: 15px;
+	background: transparent no-repeat url(data:image/gif;base64,R0lGODlhEgAKAIABALu7u////yH5BAEAAAEALAAAAAASAAoAAAIfjI9poI0cgDywrhuxfbrzDEbQM2Ei5aRjmoySW4pAAQA7);
+}
+
 .mce-visualblocks section {
 	padding-top: 10px;
 	border: 1px dashed #BBB;

@@ -1,7 +1,7 @@
 <?php  $main=$this->main; ?>
 <div  id="article<?php echo $main->id; ?>"  class="post-item isolated-block col-xs-12 col-lg-12">
-	<h1><?php echo $main->title; ?>	 	 
-	 	<div class="g-plusone" href="<?php echo $this->url(array('articleId' =>  $main->url),'articles');?>" data-size="medium"></div>  
+	<h1><?php echo $main->title; ?>	 			 
+	 	<div class="g-plusone" href="<?php echo $this->url(array('articleId' =>  $main->url),'articles');?>" data-size="medium"></div>  	 	 
 	</h1>
 	<?php if ($main->article_type!='static') : ?>
 		<div class="meta post-header clearfix">
@@ -36,6 +36,7 @@
 				 ?>  	         
 	     </ul>
 	     <?php endif;?>
+	     <?php if ($main->article_type!='preview') : ?>
      	 <div  class="addthis pull-right">
 		 <!-- AddThis Button BEGIN -->
 			<div class="addthis_toolbox addthis_default_style addthis_24x24_style">
@@ -58,9 +59,10 @@
 				 <a class="addthis_counter addthis_bubble_style"></a>
 			</div>
 		<script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
-		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f0f9813583963ee"></script>
-		<!-- AddThis Button END -->
-		</div>	  		
+		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f0f9813583963ee"></script>		
+		<!-- AddThis Button END -->		
+		</div>
+		<?php endif;?>	  		
 		<? if (Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isadmin == 1):?>
 		<div class="meta-item comments">
 			<!-- @todo refactor -->
@@ -70,7 +72,7 @@
 		</div> 		 	
   		<? endif;?>				  	
 	</div>	
-	<?php if ($main->article_type!='static') : ?>	
+	<?php if ($main->article_type!='static' && $main->article_type!='preview') : ?>	
 		<div class="comment-box text-right clearfix" id="comment-form">
 			<h2><span class="glyphicon glyphicon-comment"></span> Leave a Comment</h2>
 			<div class="comment-form-container col-lg-12">
@@ -128,7 +130,7 @@
 			</div>
 	 
 		</div>  
-		<?php if (!empty($this->comments)): ?>	
+		<?php if (  !empty($this->comments)): ?>	
 			<div class="comment-box comments-list clearfix" id="comments-area">
 				<h2>Comments</h2>
 				<?php foreach ( $this->comments as $comment ):?>

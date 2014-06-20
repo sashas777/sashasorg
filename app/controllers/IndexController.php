@@ -119,6 +119,28 @@ public function indexAction()
  		$this->view->comments=$coments;
 	}
 	
+	public function previewAction(){
+		 
+		$content = $this->_getParam('intro_text');
+		$full_content = $this->_getParam('full_text');
+		$title = $this->_getParam('title');
+		$tags = $this->_getParam('tags');
+		
+		$main = new App_Model_Articles();
+		$main->id=-1;
+		$main->text=$content;
+		$main->full_text=$full_content;	
+		$main->title = $title;
+		$main->tags =$tags;
+		$main->tag_urls =$tags;
+		$main->article_type='preview';
+		$this->view->headTitle()->append($title);
+		
+		$this->view->main = $main;
+		 
+		$this->_helper->viewRenderer('article');
+	}
+	
 	public function lastfmAction(){
 		$as = new Zend_Service_Audioscrobbler();
 		// Set the user whose profile information we want to retrieve

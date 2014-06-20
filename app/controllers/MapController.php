@@ -32,7 +32,8 @@ class MapController extends Zend_Controller_Action {
 			path' . $i . '.setMap(map);
 			';		
 		}
- 
+		
+	 
 		$this->view->maps=$text;
 	}
 }

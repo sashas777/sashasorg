@@ -84,16 +84,7 @@ class AdminController extends Zend_Controller_Action {
 				$tagDbres=$tagDb->tag_change($value,'plus',$article_id); //add tag 						
 			}								
 		
-			/*POSTING TO TWITTER*/
-// 				$token = 'p8gd7ho3LK7c3wEU3xEPrzhyJR4xRg14NTbKcIEcQ';		
-// 				$key='	kKBZFHONfFGm2fmwR7gkA';		
-// 				$twitter = new Zend_Service_Twitter(array(
-// 						'username' => 'sashas777',
-// 						'accessToken' => $token
-// 				));			
-// 				$response = $twitter->account->verifyCredentials();
-// 				$result=$twitter->status->update($title.' (http://sashas.org)');
-			/*END TWITTER*/
+ 
 			$article_id=$db->get_article_id($data['url']);
 			$this->_helper->redirector->gotoRoute(array('articleId'=>$article_id), 'articles');
 			} else {	

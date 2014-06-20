@@ -3,12 +3,36 @@
 <script type="text/javascript">
  
 tinymce.init({
-	 plugins : 'autoresize charmap contextmenu image media template visualblocks code link paste visualchars autolink preview',
+	 plugins : 'bootstrapimg autoresize charmap contextmenu media template visualblocks code link paste visualchars autolink preview',
 	//  plugins : 'safari,pagebreak,style,layer,table,advhr,advimage,emotions,iespell,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras',
 	  selector: "textarea",
 	  image_advtab: true,
-	  
-	});
+	  forced_root_block : 'div',
+	  forced_root_block_attrs: { "class": "col-lg-12" },
+	 visualblocks_default_state: true,
+	 content_css : [ "/public/css/bootstrap.min.css","/public/css/bootstrap-theme.min.css" ,"/public/css/sashas.css" ],
+	 
+	 formats : {
+		 alignleft : {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'pull-left'},
+		 aligncenter : {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'center-block'},
+		 alignright : {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'pull-right'},
+		 alignfull : {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'col-lg-12'},
+	 }
+});		
+$( document ).ready(function() {
+	$('#preview').click( function () { 		    
+	    $.ajax({
+	        type: "POST", 
+	        url: "/index/preview/",
+	        data: {title: $('#title').val(), tags: $('#tags').val(), full_text: tinyMCE.get('full_text').getContent(), intro_text: tinyMCE.get('intro_text').getContent() },	        
+	        success: function(data){
+	            var win = window.open();
+	            win.document.write(data);
+	        }
+	    })  
+	
+	})
+});
 </script>
 <?php
 	$article=$this->article;
@@ -48,8 +72,11 @@ tinymce.init({
 		 	 <input type="hidden" name="article_id" value="<?php if (!empty($article)) { echo str_replace(',', ', ', $article->id); } ?>" />
 		 
 		 <div class="form-group">
-		    <div class="col-sm-offset-2 col-sm-2 pull-right">
+		    <div class="col-sm-2 pull-right">
 				  <input class="form-control btn btn-default"  type="submit" value="Add Article" />
+			</div>
+			 <div class="col-sm-2 pull-right">
+				  <button id="preview" class="form-control btn btn-default"  type="button"  />Preview</button>
 			</div>
 		</div>		 	 
 		

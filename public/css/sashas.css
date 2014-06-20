@@ -43,3 +43,4 @@ blockquote {
 .thumbnail-medium {max-width: 150px;}
 .thumbnail-440 {max-width:440px;}
 .post-gallery {margin-top:15px;}
+.top-buffer { margin-top:20px; }
