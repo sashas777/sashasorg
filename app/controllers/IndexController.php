@@ -12,7 +12,7 @@ public function indexAction()
 	{
 		$routes='';
 		$tag = $this->_getParam('tag');
-		$keywords="Alex Lukyanov Blog, Sashas, Magento, Magento Extensions, Blog, News, Articles, New York, PHP";
+		$keywords="Alex Lukyanov Blog, Sashas, Magento, Magento Extensions, Magento development, Blog, News, Articles, New York, PHP";
 		$descr='Official blog  of Alex Lukyanov (Sashas)';
 		
 		if ( ($tag!=='All') && (!empty($tag)) ) {
@@ -50,7 +50,7 @@ public function indexAction()
 	
 		$routes='';
 		$tag = $this->_getParam('tag');
-		$keywords="Alex Lukyanov Blog, Sashas, Magento, Magento Extensions, Blog, News, Articles, New York, PHP";
+		$keywords="Alex Lukyanov Blog, Sashas, Magento, Magento Extensions, Magento development, Blog, News, Articles, New York, PHP";
 		$descr='Official blog  of Alex Lukyanov (Sashas)';
 		
 		if ( ($tag!=='All') and (!empty($tag)) ) {
@@ -103,7 +103,7 @@ public function indexAction()
 		$add_keywords=str_replace(' ',',',$main->title);
 		$add_keywords=str_replace("'","",$add_keywords);
 		$add_keywords=str_replace('"','',$add_keywords);
-		$this->view->headMeta()->appendName('keywords', $add_keywords.'Alex Lukyanov Blog, Sashas, Magento, Magento Extensions, Blog, News, Articles, New York, PHP');
+		$this->view->headMeta()->appendName('keywords', $add_keywords.'Alex Lukyanov Blog, Magento development, Sashas, Magento, Magento Extensions, Blog, News, Articles, New York, PHP');
 		$this->view->headMeta()->appendName('description', $main->title);
  
 		$this->view->headTitle()->append($main->title);
@@ -146,6 +146,7 @@ public function indexAction()
 		// Set the user whose profile information we want to retrieve
 		$as->setUser('sashas777');
 		$artists = $as->userGetTopArtists();
+		 	
 		$this->view->artists=$artists;
 		$this->view->headTitle()->append('LastFM');
 	}
@@ -176,9 +177,9 @@ public function indexAction()
 				 $pic_name=$_FILES["picture"]["name"];
 				 $img_helper=new App_Model_ImageHelper();
 				 $img_helper->load("images/android/" .$pic_name);
-				 $img_helper->resizeToWidth(565);
+				// $img_helper->resizeToWidth(565);
 				 $img_helper->save("images/android/" .$pic_name);
-				 $content='<div   style="min-height: 2px; overflow: auto;"><img alt="" src="/images/android/'.$pic_name.'" style="vertical-align: middle; display: block; margin: 0px auto; float:none;"></div> ';
+				 $content='<div  class="col-lg-12"><img alt="" src="/images/android/'.$pic_name.'" ></div> ';
 			}else {
 				die('File saving error');
 			}

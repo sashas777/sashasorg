@@ -136,7 +136,7 @@
 				<?php foreach ( $this->comments as $comment ):?>
 					<div class="media clearfix" id="comment<?php echo $comment['id']; ?>">
 				        <div class="media-header">
-				        	<span class="comment-date"><span class="glyphicon glyphicon-pushpin"></span><?php echo $comment['date']; ?></span>
+				        	<span  itemprop="date" class="comment-date"><span class="glyphicon glyphicon-pushpin"></span><?php echo $comment['date']; ?></span>
 				        </div>	 	
 						<div class="media-body">
 							<?php echo $comment['text']; ?>
