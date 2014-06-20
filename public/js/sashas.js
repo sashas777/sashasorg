@@ -1,22 +1,60 @@
-function login() {
-	$('#load').show();
-	login = $('#email').val();
-	password = $('#password').val();
-	$.get('/user/login/login/' + login + '/password/' + password,
+
+$( document ).ready(function() {
+	
+	$('#login_submit').click(function(){
+		$('#load').addClass('show');
+		$('#goto').addClass('hide'); 	 
+		$('#login-form').removeClass('show').addClass('hide');
+		$('#goto span').removeClass("bg-danger");
+		login = $('#email').val();
+		password = $('#password').val();
+ 
+		$.ajax({ 
+			async: true,
+			url: '/user/login/',
+			type: "GET",
+			 data: {login:login, password:password }, 
+			 dataType: 'json',
+			 success: function(data) {		
+				 console.log(data);
+				 if (data.result=="success"){ 
+					$('#login-form').removeClass('show').addClass('hide');
+					$('#load').removeClass('show').addClass('hide');	
+					$('#goto').addClass('show');
+					$('#goto span').text('You are logged in');
+					window.location.href = "/admin/index/";					 
+				 }else {
+					 $('#login-form').removeClass('hide').addClass('show');	
+					 $('#load').removeClass('show').addClass('hide');	
+					 $('#goto').addClass('show');
+					 $('#goto span').text('Please check credentials').addClass('bg-danger');
+				 }
+			 
+			 }
+		});	
+	});
+	
+});
+ 
+    //Some code
+  
+	/*$.get('/user/login/login/' + login + '/password/' + password,
 			function(data) {
 				var results = jQuery.parseJSON(data);
 				if (results.result == 'success') {
-					$('#form').hide();
-					$('#load').hide();
-					$('#goto').show();
+					$('#login-form').removeClass('show').addClass('hide');
+					$('#load').removeClass('show').addClass('hide');	
+					$('#goto').addClass('show');
+					$('#goto span').text('You are logged in');
 				} else {
-
-					$('#load').hide();
-					alert('Error. Wrong ' + results.result
-							+ '. Try again please.');
+					$('#login-form').removeClass('hide').addClass('show');	
+					$('#load').removeClass('show').addClass('hide');	
+					$('#goto span').text('Please check credentials').addClass('bg-danger');
 				}
 			});
-}
+	*/
+ 
+
 /*Refactor*/
 function deletearticle(artid) {
 	$('#load').addClass('show');

@@ -9,8 +9,9 @@ class UserController extends Zend_Controller_Action {
 			$password = sha1 ( $this->_getParam ( 'password' ) . 'jdh37dgvs' );
 			$email = $this->_getParam ( 'login' );
 			$res = $this->auth ( $password, $email );
-			
+ 
 			$this->_response->appendBody ( Zend_Json_Encoder::encode ( array ('result' => $res ) ) );
+			 
 			return;
 		} 
 	}

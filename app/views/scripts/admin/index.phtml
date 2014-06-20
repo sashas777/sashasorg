@@ -1,82 +1,9 @@
- <div class="admin-home box1">
-
- <div class="pro_tabs pro_tabs3">
- 	<div class="pro_wrapper">
- 		<ul class="pro_layouts-menu">
-				<li class="pro_table1"><a class="current" href="#"><span>Main</span></a></li>
-				<li class="pro_table2"><a href="#" class=""><span>Add Article</span></a></li>
-				<li class="pro_table3"><a href="#" class=""><span>Users</span></a></li>
-				<li class="pro_table4"><a href="#" class=""><span>Travels</span></a></li>
-	     </ul>
-	</div>
-	
-	<div style="display: block;" class="pro_tab-content">
-			<div class="container_12">
-				<div class="pro_wrapper">
-					<div class="grid_12">
-						<h6>Main Administration page</h6>
-						 <center> Welcome To Admin Panel :) </center>
-						
-						
-					</div>
-				</div>
-			</div>
+<div  class="post-item isolated-block col-xs-12 col-lg-12">
+	<h1>Admin Dashboard</h1>
+	<div class="post-content text-content clearfix">
+		<div style="display: block;" class="text-center"> 
+			Welcome To Admin Panel :) </center> 
 		</div>
-		<div style="display: block;" class="pro_tab-content">
-			<div class="container_12">
-				<div class="pro_wrapper">
-					<div class="grid_12">
-						<h6>Add Article</h6>
-						<script type="text/javascript" src="public/tiny_mce/tiny_mce.js"></script>
-<script type="text/javascript">
-tinyMCE.init({
-		theme : "advanced",
-        mode : "textareas"
-});
-
-</script>
-<div class="box1 admin-home-add-article" >
- <?php
-			$article=$this->article;
-?>
- <form action="<?php echo $this->url(array(),'adm_add'); ?>" method="POST">
-<center>
- Title:
- <input name="title" style="width:100%;" value="<?php if (!empty($article)) { echo $article->title; } ?>"  type="text" />
- <br/> <br/>
- Url (without ".html"):
- <input name="url" style="width:100%;" value="<?php if (!empty($article)) { echo $article->url; } ?>"  type="text" />
- <br/> <br/>
- Access Level: <br/>
- <select style="width:100%" name="access[]"  multiple="multiple">
-  <option selected="selected" value="homepage">Homepage</option>
-  <option value="static">Static</option>
-  <option value="top_text">Top Homepage</option>
-</select> 
-  <br/> <br/>
- Preview Content:
-  <br/> <br/>
-  <textarea name="preview_text"  style=" width:100%;height:400px;"  ><?php if (!empty($article)) { echo $article->text; } ?></textarea>
-  <br/><br/>
- Full content:
-  <br/> <br/>
-  <textarea name="full_text"  style="width:100%;height:600px;"><?php if (!empty($article)) { echo $article->full_text; } ?></textarea>
-  <br/> <br/>
-  <input name="tags" style="width:100%;" <?php if (!empty($article)) { echo "disabled"; } ?> value="<?php if (!empty($article)) { echo str_replace(',', ', ', $article->tags); } ?>"    type="text"  />
-    <br/> <br/>
-    <input type="hidden" name="article_id" value="<?php if (!empty($article)) { echo str_replace(',', ', ', $article->id); } ?>" />
-  <input   class="pro_btn pro_print2"  type="submit" value="Submit Article" />
-  </center>
-  </form>
-  
-  </div>
-  
-						
-						
-					</div>
-				</div>
-			</div>
-		</div>	
- </div>
+ 	</div>
  </div>
  
