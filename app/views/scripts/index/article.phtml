@@ -63,14 +63,14 @@
 		<!-- AddThis Button END -->		
 		</div>
 		<?php endif;?>	  		
-		<? if (Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isadmin == 1):?>
+		<?php if (Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->isadmin == 1):?>
 		<div class="meta-item comments">
 			<!-- @todo refactor -->
 		  	<a href='' class="link" onclick="deletearticle(<?php echo $main->id;?>); return false;">Delete</a>
 		 	<a class="link" href='<?php echo   $this->url(array('articleId' =>  $main->url),'article_edit'); ?>'>Edit</a>
 		 	<!-- @todo refactor -->
 		</div> 		 	
-  		<? endif;?>				  	
+  		<?php endif;?>				  	
 	</div>	
 	<?php if ($main->article_type!='static' && $main->article_type!='preview') : ?>	
 		<div class="comment-box text-right clearfix" id="comment-form">
